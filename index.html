@@ -1,1 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>M Zaky Mahid Ruwansyah — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: #f0f0f0;
+      color: #111;
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: #e8e8e8; }
+    ::-webkit-scrollbar-thumb { background: #bbb; border-radius: 4px; }
 
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2.5rem;
+      background: rgba(255,255,255,0.72);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid rgba(255,255,255,0.85);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.07);
+    }
+    .nav-logo { font-size: 1.4rem; font-weight: 800; color: #111; letter-spacing: 1px; }
+    .nav-right { display: flex; align-items: center; gap: 1.75rem; }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.82rem; font-weight: 500; color: #777; transition: color 0.2s;
+      padding-bottom: 2px; border-bottom: 2px solid transparent;
+    }
+    .nav-links a:hover, .nav-links a.active { color: #111; border-bottom-color: #111; }
+    .lang-toggle {
+      display: flex; align-items: center; gap: 0.35rem;
+      background: rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.12);
+      border-radius: 99px; padding: 0.28rem 0.6rem;
+    }
+    .lang-btn {
+      font-size: 0.7rem; font-weight: 700; padding: 0.18rem 0.5rem;
+      border-radius: 99px; border: none; cursor: pointer; transition: all 0.2s;
+      background: transparent; color: #999; font-family: 'Poppins', sans-serif;
+    }
+    .lang-btn.active { background: #111; color: #fff; }
+    .hamburger-btn {
+      display: none; background: none; border: none; cursor: pointer; color: #555; padding: 4px;
+    }
+
+    /* ── MOBILE MENU ── */
+    .mobile-menu {
+      display: none; position: fixed; inset: 0; z-index: 998;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+      flex-direction: column; align-items: center; justify-content: center; gap: 2rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-size: 1.5rem; font-weight: 700; color: #888;
+    }
+    .mobile-menu a.active { color: #111; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh; display: flex; align-items: center;
+      padding: 8rem 2.5rem 4rem;
+      background: linear-gradient(135deg, #f7f7f7 0%, #ececec 100%);
+    }
+    .hero-inner {
+      max-width: 1100px; margin: 0 auto; width: 100%;
+      display: flex; align-items: center; gap: 4rem;
+    }
+    .hero-text { flex: 1; }
+    .hero-tag {
+      display: inline-block; font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 2.5px; color: #555; text-transform: uppercase;
+      background: rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.12);
+      padding: 0.35rem 1rem; border-radius: 99px; margin-bottom: 1.4rem;
+    }
+    .hero-name {
+      font-size: clamp(2.4rem, 4.6vw, 4rem); font-weight: 900;
+      line-height: 1.06; color: #000; margin-bottom: 0.75rem; letter-spacing: -1px;
+    }
+    .hero-role { font-size: 0.92rem; color: #777; font-weight: 400; margin-bottom: 1.4rem; }
+    .hero-bio {
+      font-size: 0.88rem; line-height: 1.9; color: #666;
+      max-width: 500px; margin-bottom: 2rem;
+    }
+    .hero-cta { display: flex; gap: 0.85rem; flex-wrap: wrap; }
+    .btn {
+      display: inline-block; padding: 0.68rem 1.85rem; border-radius: 4px;
+      font-size: 0.84rem; font-weight: 600; cursor: pointer; transition: all 0.2s;
+      font-family: 'Poppins', sans-serif;
+    }
+    .btn-dark { background: #111; color: #fff; border: 1.5px solid #111; }
+    .btn-dark:hover { background: #333; }
+    .btn-outline { background: transparent; color: #111; border: 1.5px solid rgba(0,0,0,0.25); }
+    .btn-outline:hover { border-color: #111; background: rgba(0,0,0,0.04); }
+    .hero-socials { display: flex; gap: 0.65rem; margin-top: 1.75rem; }
+    .soc-btn {
+      width: 40px; height: 40px; border-radius: 50%;
+      border: 1px solid rgba(0,0,0,0.15); background: rgba(255,255,255,0.6);
+      display: flex; align-items: center; justify-content: center;
+      color: #888; transition: all 0.2s; cursor: pointer;
+    }
+    .soc-btn:hover { border-color: #111; color: #111; }
+    .hero-photo {
+      flex-shrink: 0; width: 275px; height: 325px; border-radius: 1.5rem; overflow: hidden;
+      background: rgba(255,255,255,0.55); backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(255,255,255,0.85); box-shadow: 0 8px 48px rgba(0,0,0,0.14);
+    }
+    .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+
+    /* ── SECTION ── */
+    .sec-wrap { max-width: 1100px; margin: 0 auto; padding: 5rem 2.5rem; }
+    .sec-alt { background: rgba(255,255,255,0.45); }
+    .sec-title {
+      font-size: 1.7rem; font-weight: 800; color: #111; letter-spacing: -0.5px;
+      margin-bottom: 0.3rem;
+    }
+    .sec-title::after {
+      content: ''; display: block; width: 36px; height: 2px;
+      background: #111; margin-top: 0.55rem; opacity: 0.22;
+    }
+    .sec-sub {
+      font-size: 0.73rem; color: #aaa; margin-top: 0.55rem; margin-bottom: 2.5rem;
+      font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase;
+    }
+
+    /* ── ABOUT ── */
+    .about-text { max-width: 720px; font-size: 1.02rem; line-height: 2; color: #555; font-weight: 300; }
+
+    /* ── TABS ── */
+    .tabs { display: flex; gap: 0.55rem; flex-wrap: wrap; margin-bottom: 2rem; }
+    .tab {
+      padding: 0.42rem 1.25rem; border-radius: 99px;
+      border: 1px solid rgba(0,0,0,0.12); background: rgba(255,255,255,0.55);
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      color: #777; font-size: 0.78rem; font-weight: 500; cursor: pointer;
+      transition: all 0.2s; font-family: 'Poppins', sans-serif;
+    }
+    .tab:hover { border-color: rgba(0,0,0,0.3); color: #333; }
+    .tab.on { background: #111; color: #fff; border-color: #111; backdrop-filter: none; }
+    .hidden { display: none !important; }
+
+    /* ── GRIDS ── */
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    .card {
+      border-radius: 0.85rem; overflow: hidden; transition: all 0.25s;
+      background: rgba(255,255,255,0.55); backdrop-filter: blur(16px) saturate(160%);
+      -webkit-backdrop-filter: blur(16px) saturate(160%);
+      border: 1px solid rgba(255,255,255,0.85); box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+    }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.13); }
+    .card-img-sq { width: 100%; aspect-ratio: 1/1; object-fit: contain; background: rgba(255,255,255,0.7); }
+    .card-img-cov { width: 100%; aspect-ratio: 1/1; object-fit: cover; }
+    .card-img-nat { width: 100%; object-fit: contain; }
+    .card-info { padding: 0.7rem 1rem; }
+    .card-cat { font-size: 0.63rem; color: #aaa; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 0.18rem; }
+    .card-name { font-size: 0.83rem; color: #222; font-weight: 600; }
+
+    /* ── EXPERIENCE ── */
+    .exp-list { display: flex; flex-direction: column; }
+    .exp-item {
+      display: grid; grid-template-columns: 190px 1fr; gap: 2.5rem;
+      padding: 2.5rem 0; border-bottom: 1px solid rgba(0,0,0,0.07);
+    }
+    .exp-item:first-child { padding-top: 0; }
+    .exp-item:last-child { border-bottom: none; }
+    .exp-date { font-size: 0.73rem; color: #aaa; font-weight: 600; line-height: 1.6; padding-top: 0.15rem; }
+    .exp-role { font-size: 0.98rem; font-weight: 700; color: #111; margin-bottom: 0.18rem; }
+    .exp-company { font-size: 0.8rem; color: #999; margin-bottom: 0.9rem; font-weight: 500; }
+    .exp-desc { font-size: 0.84rem; color: #777; line-height: 1.85; margin-bottom: 0.6rem; }
+    .exp-imgs {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; margin-top: 1rem;
+    }
+    .exp-imgs.cols-2 { grid-template-columns: repeat(2, 1fr); }
+    .exp-img {
+      width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 0.5rem;
+      background: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.8);
+    }
+
+    /* ── VIDEO SLIDER (multi-card) ── */
+    .vslider-wrap { margin-top: 1.5rem; }
+    .vslider-row {
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .vslider-arrow {
+      flex-shrink: 0; width: 42px; height: 42px; border-radius: 50%;
+      border: 1.5px solid rgba(0,0,0,0.12); background: rgba(255,255,255,0.95);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: all 0.2s; color: #333;
+      align-self: center;
+    }
+    .vslider-arrow:hover:not(:disabled) { background: #111; color: #fff; border-color: #111; box-shadow: 0 4px 16px rgba(0,0,0,0.18); }
+    .vslider-arrow:disabled { opacity: 0.3; cursor: not-allowed; background: rgba(240,240,240,0.7); box-shadow: none; color: #bbb; }
+    .vslider-grid {
+      flex: 1;
+      display: grid;
+      gap: 0.75rem;
+    }
+    .vslide-card {
+      position: relative; border-radius: 0.85rem; overflow: hidden;
+      background: #1a1a1a;
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+      aspect-ratio: 9/16;
+    }
+    .vslide-card video { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .vslide-stats {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.75));
+      padding: 2rem 0.75rem 0.85rem;
+      display: flex; justify-content: space-around; align-items: center;
+      pointer-events: none;
+    }
+    .vslide-stat {
+      display: flex; align-items: center; gap: 4px;
+      color: #fff; font-size: 0.7rem; font-weight: 600;
+    }
+    .vslide-dots {
+      display: flex; justify-content: center; gap: 0.4rem; margin-top: 1rem;
+    }
+    .vslide-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: rgba(0,0,0,0.15); transition: all 0.22s; cursor: pointer; border: none;
+    }
+    .vslide-dot.on { background: #111; width: 22px; border-radius: 4px; }
+
+    /* ── CONTACT ── */
+    .contact-info-wrap { max-width: 560px; }
+    .cinfo-title { font-size: 1.08rem; font-weight: 700; color: #111; margin-bottom: 0.7rem; }
+    .cinfo-desc { font-size: 0.86rem; color: #888; line-height: 1.85; margin-bottom: 2rem; }
+    .citem { display: flex; align-items: center; gap: 0.9rem; margin-bottom: 1.1rem; }
+    .cicon {
+      width: 44px; height: 44px; background: rgba(255,255,255,0.65);
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.9); box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      color: #777; flex-shrink: 0;
+    }
+    .clabel { font-size: 0.65rem; color: #bbb; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; margin-bottom: 0.08rem; }
+    .cval { font-size: 0.88rem; color: #333; font-weight: 500; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: rgba(255,255,255,0.65); backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-top: 1px solid rgba(255,255,255,0.85);
+      text-align: center; padding: 2rem 2.5rem;
+    }
+    footer p { font-size: 0.78rem; color: #bbb; }
+    footer span { color: #888; }
+
+    /* ── MOBILE RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 0.85rem 1.25rem; }
+      .nav-links { display: none; }
+      .hamburger-btn { display: flex; align-items: center; }
+      .hero { padding: 6rem 1.25rem 3rem; }
+      .hero-inner { flex-direction: column-reverse; gap: 2rem; text-align: center; }
+      .hero-photo { width: 180px; height: 215px; align-self: center; }
+      .hero-cta { justify-content: center; }
+      .hero-bio { margin-left: auto; margin-right: auto; }
+      .sec-wrap { padding: 3rem 1.25rem; }
+      .exp-item { grid-template-columns: 1fr; gap: 0.4rem; }
+      .grid-3 { grid-template-columns: repeat(2, 1fr); }
+      .grid-2 { grid-template-columns: 1fr; }
+      .exp-imgs { grid-template-columns: repeat(2, 1fr); }
+      .contact-layout { grid-template-columns: 1fr !important; gap: 2rem !important; }
+    }
+    @media (max-width: 480px) {
+      .grid-3 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Zaky.</div>
+  <div class="nav-right">
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#beranda" class="nav-link" data-en="Home" data-id="Beranda">Home</a></li>
+      <li><a href="#tentang" class="nav-link" data-en="About" data-id="Tentang">About</a></li>
+      <li><a href="#karya" class="nav-link" data-en="Works" data-id="Karya">Works</a></li>
+      <li><a href="#pengalaman" class="nav-link" data-en="Experience" data-id="Pengalaman">Experience</a></li>
+      <li><a href="#kontak" class="nav-link" data-en="Contact" data-id="Kontak">Contact</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button class="lang-btn active" id="btnEN" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" id="btnID" onclick="setLang('id')">ID</button>
+    </div>
+    <button class="hamburger-btn" id="hamburgerBtn" onclick="toggleMenu()" aria-label="Menu">
+      <svg id="menuIcon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#beranda" class="nav-link mobile-link" onclick="closeMenu()" data-en="Home" data-id="Beranda">Home</a>
+  <a href="#tentang" class="nav-link mobile-link" onclick="closeMenu()" data-en="About" data-id="Tentang">About</a>
+  <a href="#karya" class="nav-link mobile-link" onclick="closeMenu()" data-en="Works" data-id="Karya">Works</a>
+  <a href="#pengalaman" class="nav-link mobile-link" onclick="closeMenu()" data-en="Experience" data-id="Pengalaman">Experience</a>
+  <a href="#kontak" class="nav-link mobile-link" onclick="closeMenu()" data-en="Contact" data-id="Kontak">Contact</a>
+</div>
+
+<!-- HERO -->
+<section id="beranda" class="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <span class="hero-tag">Visual Alchemist • 3D Artist • Animator</span>
+      <h1 class="hero-name">M Zaky<br>Mahid Ruwansyah</h1>
+      <p class="hero-role"
+         data-en="Graphic Design · 2D Animation · 3D Art · Video Editing"
+         data-id="Graphic Design · Animasi 2D · 3D Art · Video Editing">
+        Graphic Design · 2D Animation · 3D Art · Video Editing
+      </p>
+      <p class="hero-bio"
+         data-en="A visual creator who has been actively learning graphic design, 2D animation, illustration, video editing, and 3D Art since 2016. Combining creativity with technical skills to produce communicative and visually engaging works."
+         data-id="Seorang kreator visual yang aktif belajar desain grafis, animasi 2D, ilustrasi, editing video, dan 3D Art sejak 2016. Menggabungkan kreativitas dengan keterampilan teknis untuk menghasilkan karya yang komunikatif dan menarik secara visual.">
+        A visual creator who has been actively learning graphic design, 2D animation, illustration, video editing, and 3D Art since 2016. Combining creativity with technical skills to produce communicative and visually engaging works.
+      </p>
+      <div class="hero-cta">
+        <a href="#karya" class="btn btn-dark" data-en="View Works" data-id="Lihat Karya">View Works</a>
+        <a href="#kontak" class="btn btn-outline" data-en="Contact Me" data-id="Hubungi Saya">Contact Me</a>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <img src="https://github.com/datazaki25-web/my-portfolio/blob/main/assets/images/foto-zaky-full.png?raw=true"
+           alt="M Zaky Mahid Ruwansyah"
+           onerror="this.src='https://ui-avatars.com/api/?name=MZ&size=330&background=eee&color=111&bold=true&length=2'" />
+    </div>
+  </div>
+</section>
+
+<!-- TENTANG -->
+<section id="tentang" class="sec-alt">
+  <div class="sec-wrap">
+    <div class="sec-title" data-en="About Me" data-id="Tentang Saya">About Me</div>
+    <div class="sec-sub" data-en="About Artist" data-id="Profil Seniman">About Artist</div>
+    <p class="about-text"
+       data-en='"A visual creator focused on graphic design, 2D animation, illustration, video editing, and 3D Art since 2016. I have a profound interest in visual arts and technology, combining creativity with technical skills to produce communicative and visually engaging works."'
+       data-id='"Seorang yang fokus bidang kreator visual yang sejak 2016 aktif belajar di bidang desain grafis, animasi 2D, ilustrasi, editing video, dan 3D Artist. Saya memiliki ketertarikan mendalam terhadap seni visual dan teknologi, serta terbiasa menggabungkan kreativitas dengan keterampilan teknis untuk menghasilkan karya yang komunikatif dan menarik secara visual."'>
+      "A visual creator focused on graphic design, 2D animation, illustration, video editing, and 3D Art since 2016. I have a profound interest in visual arts and technology, combining creativity with technical skills to produce communicative and visually engaging works."
+    </p>
+  </div>
+</section>
+
+<!-- KARYA -->
+<section id="karya">
+  <div class="sec-wrap">
+    <div class="sec-title" data-en="My Works" data-id="Karya Saya">My Works</div>
+    <div class="sec-sub" data-en="Selected Creative Work" data-id="Hasil Karya Pilihan">Selected Creative Work</div>
+
+    <div class="tabs">
+      <button class="tab on" onclick="switchTab('logo', this)" data-en="Logo Works" data-id="Logo Karya">Logo Works</button>
+      <button class="tab"    onclick="switchTab('gambar', this)" data-en="Images"     data-id="Gambar">Images</button>
+      <button class="tab"    onclick="switchTab('mockup', this)" data-en="3D Mock-up" data-id="3D Mock-up">3D Mock-up</button>
+    </div>
+
+    <!-- Logo -->
+    <div id="tab-logo" class="grid-3">
+      <div class="card"><img class="card-img-sq" src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/LOGO%20KARYA/1.png" alt="Logo 1" loading="lazy" onerror="this.style.opacity='0.2'"/><div class="card-info"><div class="card-cat">Logo</div><div class="card-name" data-en="Logo Work 1" data-id="Logo Karya 1">Logo Work 1</div></div></div>
+      <div class="card"><img class="card-img-sq" src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/LOGO%20KARYA/2.png" alt="Logo 2" loading="lazy" onerror="this.style.opacity='0.2'"/><div class="card-info"><div class="card-cat">Logo</div><div class="card-name" data-en="Logo Work 2" data-id="Logo Karya 2">Logo Work 2</div></div></div>
+      <div class="card"><img class="card-img-sq" src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/LOGO%20KARYA/3.png" alt="Logo 3" loading="lazy" onerror="this.style.opacity='0.2'"/><div class="card-info"><div class="card-cat">Logo</div><div class="card-name" data-en="Logo Work 3" data-id="Logo Karya 3">Logo Work 3</div></div></div>
+      <div class="card"><img class="card-img-sq" src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/LOGO%20KARYA/4.png" alt="Logo 4" loading="lazy" onerror="this.style.opacity='0.2'"/><div class="card-info"><div class="card-cat">Logo</div><div class="card-name" data-en="Logo Work 4" data-id="Logo Karya 4">Logo Work 4</div></div></div>
+      <div class="card"><img class="card-img-sq" src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/LOGO%20KARYA/5.png" alt="Logo 5" loading="lazy" onerror="this.style.opacity='0.2'"/><div class="card-info"><div class="card-cat">Logo</div><div class="card-name" data-en="Logo Work 5" data-id="Logo Karya 5">Logo Work 5</div></div></div>
+      <div class="card"><img class="card-img-sq" src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/LOGO%20KARYA/6.png" alt="Logo 6" loading="lazy" onerror="this.style.opacity='0.2'"/><div class="card-info"><div class="card-cat">Logo</div><div class="card-name" data-en="Logo Work 6" data-id="Logo Karya 6">Logo Work 6</div></div></div>
+    </div>
+
+    <!-- Gambar -->
+    <div id="tab-gambar" class="grid-2 hidden">
+      <div class="card"><img class="card-img-cov" src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/Gambar/1.png" alt="Gambar 1" loading="lazy" onerror="this.style.opacity='0.2'"/><div class="card-info"><div class="card-cat" data-en="Image" data-id="Gambar">Image</div><div class="card-name" data-en="Image 1" data-id="Gambar 1">Image 1</div></div></div>
+      <div class="card"><img class="card-img-cov" src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/Gambar/2.png" alt="Gambar 2" loading="lazy" onerror="this.style.opacity='0.2'"/><div class="card-info"><div class="card-cat" data-en="Image" data-id="Gambar">Image</div><div class="card-name" data-en="Image 2" data-id="Gambar 2">Image 2</div></div></div>
+    </div>
+
+    <!-- 3D Mockup -->
+    <div id="tab-mockup" class="grid-3 hidden">
+      <div class="card"><img class="card-img-nat" src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/3D%20Mock-up/1.png" alt="3D 1" loading="lazy" onerror="this.style.opacity='0.2'"/><div class="card-info"><div class="card-cat">3D Mock-up</div><div class="card-name" data-en="3D Mock-up 1" data-id="3D Mock-up 1">3D Mock-up 1</div></div></div>
+      <div class="card"><img class="card-img-nat" src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/3D%20Mock-up/2.png" alt="3D 2" loading="lazy" onerror="this.style.opacity='0.2'"/><div class="card-info"><div class="card-cat">3D Mock-up</div><div class="card-name" data-en="3D Mock-up 2" data-id="3D Mock-up 2">3D Mock-up 2</div></div></div>
+      <div class="card"><img class="card-img-nat" src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/3D%20Mock-up/3.png" alt="3D 3" loading="lazy" onerror="this.style.opacity='0.2'"/><div class="card-info"><div class="card-cat">3D Mock-up</div><div class="card-name" data-en="3D Mock-up 3" data-id="3D Mock-up 3">3D Mock-up 3</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PENGALAMAN -->
+<section id="pengalaman" class="sec-alt">
+  <div class="sec-wrap">
+    <div class="sec-title" data-en="Experience" data-id="Riwayat Eksibisi">Experience</div>
+    <div class="sec-sub" data-en="Exhibition History" data-id="Exhibition History">Exhibition History</div>
+
+    <div class="exp-list">
+
+      <!-- Exp 1 - Video Creator -->
+      <div class="exp-item">
+        <div class="exp-date">December 2024 – July 2025</div>
+        <div>
+          <div class="exp-role" data-en="Creative Staff – Video Creator" data-id="Staf Kreatif – Video Creator">Creative Staff – Video Creator</div>
+          <div class="exp-company">PT Inovasi Karsa Nusantara – Tangerang, Indonesia</div>
+          <p class="exp-desc exp-en"
+             data-en="Responsible for creating digital promotional videos and social media content, from planning and shooting to editing. Proficient in Adobe Premiere Pro, After Effects, and CapCut to produce high-quality videos with engaging graphics, transitions, and sound effects.">
+            Responsible for creating digital promotional videos and social media content, from planning and shooting to editing. Proficient in Adobe Premiere Pro, After Effects, and CapCut to produce high-quality videos with engaging graphics, transitions, and sound effects.
+          </p>
+          <p class="exp-desc exp-id hidden"
+             data-id="Bertanggung jawab membuat konten video promosi digital dan media sosial, mulai dari perencanaan, pengambilan gambar, hingga editing. Mahir menggunakan Adobe Premiere Pro, After Effects, dan CapCut untuk menghasilkan video berkualitas dengan grafis, transisi, dan efek suara menarik.">
+            Bertanggung jawab membuat konten video promosi digital dan media sosial, mulai dari perencanaan, pengambilan gambar, hingga editing.
+          </p>
+
+          <!-- VIDEO SLIDER — multi-card -->
+          <div class="vslider-wrap" id="vslider">
+            <div class="vslider-row">
+              <button class="vslider-arrow" id="vPrevBtn" onclick="vslide(-1)" aria-label="Previous">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+              </button>
+              <div class="vslider-grid" id="vsliderGrid"></div>
+              <button class="vslider-arrow" id="vNextBtn" onclick="vslide(1)" aria-label="Next">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+              </button>
+            </div>
+            <div class="vslide-dots" id="vsliderDots"></div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Exp 2 — DISKOMINFO -->
+      <div class="exp-item">
+        <div class="exp-date">August – October 2023</div>
+        <div>
+          <div class="exp-role" data-en="Internship – Video Editor" data-id="Internship – Video Editor">Internship – Video Editor</div>
+          <div class="exp-company">DISKOMINFO Kabupaten Bogor</div>
+          <p class="exp-desc exp-en" data-en="Planned, produced, and published official social media visual content. Created informative short videos (Reels), designed magazine layouts and graphic materials, and collaborated with the communication team.">
+            Planned, produced, and published official social media visual content. Created informative short videos (Reels), designed magazine layouts and graphic materials.
+          </p>
+          <p class="exp-desc exp-id hidden" data-id="Merencanakan, memproduksi, dan mempublikasikan konten visual media sosial resmi. Membuat video pendek informatif (Reels), mendesain layout majalah dan materi grafis, berkolaborasi dengan tim komunikasi.">
+            Merencanakan, memproduksi, dan mempublikasikan konten visual media sosial resmi.
+          </p>
+          <!-- Row 1: 3 vertical Reels -->
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.6rem;margin-top:1rem;">
+            <div style="border-radius:0.6rem;overflow:hidden;aspect-ratio:9/16;background:#e8e8e8;border:1px solid rgba(255,255,255,0.8)">
+              <video controls preload="none" src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/diskominfo/reels%201.mp4" style="width:100%;height:100%;object-fit:cover;display:block"></video>
+            </div>
+            <div style="border-radius:0.6rem;overflow:hidden;aspect-ratio:9/16;background:#e8e8e8;border:1px solid rgba(255,255,255,0.8)">
+              <video controls preload="none" src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/diskominfo/reels%203.mp4" style="width:100%;height:100%;object-fit:cover;display:block"></video>
+            </div>
+            <div style="border-radius:0.6rem;overflow:hidden;aspect-ratio:9/16;background:#e8e8e8;border:1px solid rgba(255,255,255,0.8)">
+              <video controls preload="none" src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/diskominfo/reels%204.mp4" style="width:100%;height:100%;object-fit:cover;display:block"></video>
+            </div>
+          </div>
+          <!-- Row 2: wide horizontal video + 2 book covers -->
+          <div style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:0.6rem;margin-top:0.6rem;">
+            <div style="border-radius:0.6rem;overflow:hidden;aspect-ratio:16/9;background:#e8e8e8;border:1px solid rgba(255,255,255,0.8)">
+              <video controls preload="none" src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/diskominfo/reels%202.mp4" style="width:100%;height:100%;object-fit:cover;display:block"></video>
+            </div>
+            <a href="https://drive.google.com/file/d/1VjbUeB2uJ1IH8z20eksRCjqXa8znO067/view" target="_blank" rel="noopener noreferrer"
+               style="position:relative;display:block;border-radius:0.6rem;overflow:hidden;aspect-ratio:994/1350;background:#222;border:1px solid rgba(255,255,255,0.8);text-decoration:none">
+              <img src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/cover%20buku%201.png" loading="lazy" alt="Cover Buku 1"
+                   style="width:100%;height:100%;object-fit:cover;opacity:0.85" onerror="this.style.opacity='0.2'" />
+              <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.35)">
+                <span style="font-size:0.58rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;border:1px solid rgba(255,255,255,0.35);padding:0.25rem 0.6rem;background:rgba(0,0,0,0.5);color:#fff;border-radius:3px">Open Book</span>
+              </div>
+            </a>
+            <a href="https://drive.google.com/file/d/1W-dQp8Uv_3JVC_qkoTdtiRAISE3zR7HR/view" target="_blank" rel="noopener noreferrer"
+               style="position:relative;display:block;border-radius:0.6rem;overflow:hidden;aspect-ratio:994/1350;background:#222;border:1px solid rgba(255,255,255,0.8);text-decoration:none">
+              <img src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/cover%20buku%202.png" loading="lazy" alt="Cover Buku 2"
+                   style="width:100%;height:100%;object-fit:cover;opacity:0.85" onerror="this.style.opacity='0.2'" />
+              <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.35)">
+                <span style="font-size:0.58rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;border:1px solid rgba(255,255,255,0.35);padding:0.25rem 0.6rem;background:rgba(0,0,0,0.5);color:#fff;border-radius:3px">Open Book</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Exp 3 — Ramoti -->
+      <div class="exp-item">
+        <div class="exp-date">January – April 2020</div>
+        <div>
+          <div class="exp-role" data-en="Creative Staff – Graphic Design" data-id="Staf Kreatif – Graphic Design">Creative Staff – Graphic Design</div>
+          <div class="exp-company">PT Ramoti Indonesia – Kota Bogor</div>
+          <p class="exp-desc exp-en" data-en="Designed 100+ Instagram feed & story visual contents according to brand identity. Created digital promotional materials including banners, posters, and infographics. Collaborated with marketing teams for visual campaigns.">
+            Designed 100+ Instagram feed & story visual contents according to brand identity. Created digital promotional materials including banners, posters, and infographics.
+          </p>
+          <p class="exp-desc exp-id hidden" data-id="Mendesain 100+ konten visual Instagram feed & story sesuai identitas merek, serta materi promosi digital seperti banner, poster, dan infografis. Berkolaborasi dengan tim pemasaran untuk kampanye visual.">
+            Mendesain 100+ konten visual Instagram feed & story sesuai identitas merek.
+          </p>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.6rem;margin-top:1rem;">
+            <div style="border-radius:0.6rem;overflow:hidden;aspect-ratio:9/16;background:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.8)">
+              <img src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/ramoti/sg%201.png" alt="SG 1" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block" onerror="this.style.opacity='0.15'" />
+            </div>
+            <div style="border-radius:0.6rem;overflow:hidden;aspect-ratio:9/16;background:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.8)">
+              <img src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/ramoti/sg%202.png" alt="SG 2" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block" onerror="this.style.opacity='0.15'" />
+            </div>
+            <div style="border-radius:0.6rem;overflow:hidden;aspect-ratio:9/16;background:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.8)">
+              <img src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/ramoti/sg%203.png" alt="SG 3" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block" onerror="this.style.opacity='0.15'" />
+            </div>
+            <div style="border-radius:0.6rem;overflow:hidden;aspect-ratio:1/1;background:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.8)">
+              <img src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/ramoti/ps%201.png" alt="PS 1" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block" onerror="this.style.opacity='0.15'" />
+            </div>
+            <div style="border-radius:0.6rem;overflow:hidden;aspect-ratio:1/1;background:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.8)">
+              <img src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/ramoti/ps%202.png" alt="PS 2" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block" onerror="this.style.opacity='0.15'" />
+            </div>
+            <div style="border-radius:0.6rem;overflow:hidden;aspect-ratio:1/1;background:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.8)">
+              <img src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/ramoti/ps%203.png" alt="PS 3" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block" onerror="this.style.opacity='0.15'" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Exp 4 — Kumata -->
+      <div class="exp-item">
+        <div class="exp-date">February – April 2018</div>
+        <div>
+          <div class="exp-role" data-en="Internship – Animator" data-id="Internship – Animator">Internship – Animator</div>
+          <div class="exp-company">PT Kumata Indonesia – Bandung</div>
+          <p class="exp-desc exp-en" data-en="In charge of creating keyframes and tweening for character animations according to storyboards for 45+ scenes in the T-JTown (NET TV) animation production. Used Toon Boom Harmony and collaborated with storyboard and layout teams.">
+            In charge of creating keyframes and tweening for character animations for 45+ scenes in <b>T-JTown (NET TV)</b>. Used Toon Boom Harmony.
+          </p>
+          <p class="exp-desc exp-id hidden" data-id="Bertugas membuat keyframe dan tweening animasi karakter serta objek sesuai storyboard untuk 45+ scene dalam produksi film animasi T-JTown (NET TV). Menggunakan Toon Boom Harmony.">
+            Bertugas membuat keyframe dan tweening animasi karakter untuk 45+ scene dalam produksi <b>T-JTown (NET TV)</b>.
+          </p>
+          <!-- Video full-width -->
+          <div style="border-radius:0.85rem;overflow:hidden;aspect-ratio:16/9;background:#111;border:1px solid rgba(0,0,0,0.1);margin-top:1rem;">
+            <iframe src="https://drive.google.com/file/d/1LylFhawmS2kH_tfx9GZ61BPwOcZY-tNc/preview"
+                    style="width:100%;height:100%;border:none;display:block" allow="autoplay" title="Kumata Animation"></iframe>
+          </div>
+          <!-- Thumbnails below -->
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.6rem;margin-top:0.6rem;">
+            <div style="border-radius:0.85rem;overflow:hidden;aspect-ratio:16/9;background:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.8)">
+              <img src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/kumata/1.png" alt="Kumata 1" loading="lazy"
+                   style="width:100%;height:100%;object-fit:cover;display:block" onerror="this.style.opacity='0.15'" />
+            </div>
+            <div style="border-radius:0.85rem;overflow:hidden;aspect-ratio:16/9;background:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.8)">
+              <img src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/kumata/2.png" alt="Kumata 2" loading="lazy"
+                   style="width:100%;height:100%;object-fit:cover;display:block" onerror="this.style.opacity='0.15'" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- KONTAK -->
+<section id="kontak">
+  <div class="sec-wrap">
+    <div class="contact-layout" style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;">
+
+      <!-- Kiri: heading -->
+      <div>
+        <div class="sec-title" data-en="Contact" data-id="Kontak">Contact</div>
+        <div class="sec-sub" data-en="Let's Collaborate" data-id="Mari Berkolaborasi">Let's Collaborate</div>
+        <p style="font-size:0.9rem;color:#666;line-height:1.9;max-width:380px;"
+           data-en="Open to collaboration opportunities, freelance projects, or simply discussing the world of visual arts and design. Don't hesitate to reach out!"
+           data-id="Terbuka untuk peluang kerja sama, proyek freelance, atau sekadar berdiskusi mengenai dunia visual dan desain. Jangan ragu untuk menghubungi!">
+          Open to collaboration opportunities, freelance projects, or simply discussing the world of visual arts and design. Don't hesitate to reach out!
+        </p>
+      </div>
+
+      <!-- Kanan: contact card -->
+      <div style="background:rgba(255,255,255,0.65);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.9);border-radius:1.2rem;box-shadow:0 4px 32px rgba(0,0,0,0.09);padding:2rem;">
+        <div class="cinfo-title" data-en="Get in Touch" data-id="Hubungi Saya">Get in Touch</div>
+        <p class="cinfo-desc"
+           data-en="Open to collaboration opportunities, freelance projects, or simply discussing the world of visual arts and design. Don't hesitate to reach out!"
+           data-id="Terbuka untuk peluang kerja sama, proyek freelance, atau sekadar berdiskusi mengenai dunia visual dan desain. Jangan ragu untuk menghubungi!">
+          Open to collaboration opportunities, freelance projects, or simply discussing the world of visual arts and design. Don't hesitate to reach out!
+        </p>
+
+        <a href="mailto:Zakidodi10@gmail.com" class="citem" style="text-decoration:none;display:flex;align-items:center;gap:0.9rem;margin-bottom:1.1rem;cursor:pointer;">
+          <div class="cicon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          <div><div class="clabel">Email</div><div class="cval">Zakidodi10@gmail.com</div></div>
+        </a>
+
+        <a href="https://instagram.com/muhzakymah.id" target="_blank" rel="noopener noreferrer" class="citem" style="text-decoration:none;display:flex;align-items:center;gap:0.9rem;margin-bottom:1.1rem;cursor:pointer;">
+          <div class="cicon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></div>
+          <div><div class="clabel">Instagram</div><div class="cval">@muhzakymah.id</div></div>
+        </a>
+
+        <a href="https://wa.me/6289687419589" target="_blank" rel="noopener noreferrer" class="citem" style="text-decoration:none;display:flex;align-items:center;gap:0.9rem;margin-bottom:0;cursor:pointer;">
+          <div class="cicon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.13.97.36 1.92.7 2.84a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6.08 6.08l.96-.96a2 2 0 0 1 2.11-.45c.92.34 1.87.57 2.84.7a2 2 0 0 1 1.72 2.02z"/></svg></div>
+          <div><div class="clabel">WhatsApp</div><div class="cval">089687419589</div></div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>&copy; 2025 <span>M Zaky Mahid Ruwansyah</span> — Visual Alchemist • 3D Artist • Animator</p>
+</footer>
+
+<script>
+/* ── VIDEO DATA ── */
+const VIDEOS = [
+  { src: "https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/Nussa%20parts/Video%201.mp4", views: "1.7M", likes: "47.4K", comments: "668" },
+  { src: "https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/Nussa%20parts/Video%202.mp4", views: "213.6K", likes: "4.2K", comments: "512" },
+  { src: "https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/Nussa%20parts/Video%203.mp4", views: "206.6K", likes: "8.9K", comments: "1009" },
+  { src: "https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/Nussa%20parts/Video%204.mp4", views: "328.5K", likes: "17.8K", comments: "143" },
+  { src: "https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/Nussa%20parts/video%205.mp4", views: "149.6K", likes: "3.1K", comments: "348" },
+  { src: "https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/Nussa%20parts/video%206.mp4", views: "96.6K", likes: "1.5K", comments: "210" },
+];
+
+let vStartIdx = 0;
+
+function getVisibleCount() {
+  const w = window.innerWidth;
+  if (w < 480) return 1;
+  if (w < 768) return 2;
+  return 3;
+}
+
+function renderVideoSlider() {
+  const vc = getVisibleCount();
+  const maxStart = VIDEOS.length - vc;
+  const grid = document.getElementById('vsliderGrid');
+  const dots = document.getElementById('vsliderDots');
+  const prevBtn = document.getElementById('vPrevBtn');
+  const nextBtn = document.getElementById('vNextBtn');
+
+  if (!grid) return;
+
+  grid.style.gridTemplateColumns = `repeat(${vc}, 1fr)`;
+
+  // Render video cards
+  grid.innerHTML = '';
+  for (let i = vStartIdx; i < vStartIdx + vc; i++) {
+    const v = VIDEOS[i];
+    const card = document.createElement('div');
+    card.className = 'vslide-card';
+    card.innerHTML = `
+      <video controls preload="none" src="${v.src}"></video>
+      <div class="vslide-stats">
+        <span class="vslide-stat">
+          <svg width="12" height="12" fill="currentColor" viewBox="0 0 16 16"><path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8z"/><path d="M8 5a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg>
+          ${v.views}
+        </span>
+        <span class="vslide-stat">
+          <svg width="12" height="12" fill="currentColor" viewBox="0 0 16 16"><path d="M8 14s6-4.35 6-8.28A3.72 3.72 0 0 0 10.28 2c-1.2 0-2.4.6-3.28 1.58C6.12 2.6 4.92 2 3.72 2A3.72 3.72 0 0 0 0 5.72C0 9.65 8 14 8 14z"/></svg>
+          ${v.likes}
+        </span>
+        <span class="vslide-stat">
+          <svg width="12" height="12" fill="currentColor" viewBox="0 0 16 16"><path d="M8 1c-4.4 0-8 2.9-8 6.5 0 2.1 1.3 4 3.4 5.2-.1.9-.6 2.1-1.6 3.1 0 0 3-.2 5-1.6.4.1.8.1 1.2.1 4.4 0 8-2.9 8-6.5S12.4 1 8 1z"/></svg>
+          ${v.comments}
+        </span>
+      </div>
+    `;
+    grid.appendChild(card);
+  }
+
+  // Render dots
+  dots.innerHTML = '';
+  const totalPages = maxStart + 1;
+  for (let i = 0; i <= maxStart; i++) {
+    const dot = document.createElement('button');
+    dot.className = 'vslide-dot' + (i === vStartIdx ? ' on' : '');
+    dot.setAttribute('aria-label', `Slide ${i + 1}`);
+    dot.onclick = () => { vStartIdx = i; renderVideoSlider(); };
+    dots.appendChild(dot);
+  }
+
+  // Arrow states
+  prevBtn.disabled = vStartIdx === 0;
+  nextBtn.disabled = vStartIdx >= maxStart;
+}
+
+function vslide(dir) {
+  const vc = getVisibleCount();
+  const maxStart = VIDEOS.length - vc;
+  vStartIdx = Math.min(Math.max(0, vStartIdx + dir), maxStart);
+  renderVideoSlider();
+}
+
+/* ── MOBILE MENU ── */
+let menuOpen = false;
+function toggleMenu() {
+  menuOpen = !menuOpen;
+  document.getElementById('mobileMenu').classList.toggle('open', menuOpen);
+}
+function closeMenu() {
+  menuOpen = false;
+  document.getElementById('mobileMenu').classList.remove('open');
+}
+
+/* ── LANGUAGE ── */
+let currentLang = 'en';
+function setLang(lang) {
+  currentLang = lang;
+  document.getElementById('btnEN').classList.toggle('active', lang === 'en');
+  document.getElementById('btnID').classList.toggle('active', lang === 'id');
+  document.querySelectorAll('[data-en]').forEach(el => {
+    const val = el.getAttribute('data-' + lang);
+    if (val !== null) el.innerHTML = val;
+  });
+  document.querySelectorAll('.exp-en').forEach(el => el.classList.toggle('hidden', lang !== 'en'));
+  document.querySelectorAll('.exp-id').forEach(el => el.classList.toggle('hidden', lang !== 'id'));
+  document.querySelectorAll('.tab').forEach(tab => {
+    const val = tab.getAttribute('data-' + lang);
+    if (val) tab.textContent = val;
+  });
+}
+
+/* ── TABS ── */
+function switchTab(id, btn) {
+  ['logo','gambar','mockup'].forEach(t => {
+    document.getElementById('tab-' + t).classList.toggle('hidden', t !== id);
+  });
+  document.querySelectorAll('.tab').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+}
+
+/* ── SCROLL ACTIVE NAV ── */
+const sections = ['beranda','tentang','karya','pengalaman','kontak'];
+window.addEventListener('scroll', () => {
+  let current = 'beranda';
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && window.scrollY >= el.offsetTop - 140) current = id;
+  });
+  document.querySelectorAll('.nav-link').forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+}, { passive: true });
+
+/* ── RESIZE ── */
+let resizeTimer;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(renderVideoSlider, 150);
+});
+
+/* ── INIT ── */
+setLang('en');
+renderVideoSlider();
+</script>
+</body>
+</html>
