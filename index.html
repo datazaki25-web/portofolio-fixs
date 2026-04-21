@@ -1,297 +1,617 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>M Zaky Mahid Ruwansyah — Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
+    :root {
+      --bg: #e5dfde;
+      --bg2: #d8d2d1;
+      --surface: rgba(255,255,255,0.55);
+      --surface-strong: rgba(255,255,255,0.78);
+      --border: rgba(0,0,0,0.20);
+      --border-subtle: rgba(0,0,0,0.10);
+      --text: #0a0a0a;
+      --text-secondary: #2a2a2a;
+      --text-muted: #707070;
+      --accent: #0a0a0a;
+      --accent-inv: #e5dfde;
+      --glass-shadow: 0 8px 30px rgba(0,0,0,0.22), 0 2px 8px rgba(0,0,0,0.14);
+      --card-hover: 0 18px 50px rgba(0,0,0,0.32), 0 4px 14px rgba(0,0,0,0.20);
+      --glass-border: rgba(0,0,0,0.18);
+    }
+    [data-theme="dark"] {
+      --bg: #2a2a30;
+      --bg2: #34343c;
+      --surface: rgba(255,255,255,0.08);
+      --surface-strong: rgba(255,255,255,0.14);
+      --border: rgba(229,223,222,0.22);
+      --border-subtle: rgba(229,223,222,0.12);
+      --text: #e5dfde;
+      --text-secondary: #c8c2c0;
+      --text-muted: #8a8480;
+      --accent: #e5dfde;
+      --accent-inv: #2a2a30;
+      --glass-shadow: 0 8px 30px rgba(0,0,0,0.35), 0 2px 8px rgba(0,0,0,0.25);
+      --card-hover: 0 18px 50px rgba(0,0,0,0.50), 0 4px 14px rgba(0,0,0,0.35);
+      --glass-border: rgba(229,223,222,0.18);
+    }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
-      background: #f0f0f0;
-      color: #111;
-      font-family: 'Poppins', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       line-height: 1.6;
       overflow-x: hidden;
+      transition: color 0.4s ease;
     }
     a { text-decoration: none; color: inherit; }
     img { display: block; max-width: 100%; }
-    ::-webkit-scrollbar { width: 4px; }
-    ::-webkit-scrollbar-track { background: #e8e8e8; }
-    ::-webkit-scrollbar-thumb { background: #bbb; border-radius: 4px; }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg2); }
+    ::-webkit-scrollbar-thumb { background: var(--text-muted); border-radius: 99px; }
+
+    /* ── BACKGROUND ── */
+    body { background: var(--bg); transition: background 0.4s ease, color 0.4s ease; }
+
+    /* ── CONTENT LAYER ── */
+    .content-layer { position: relative; z-index: 1; }
+
+    /* ── GLASS UTILITY ── */
+    .glass {
+      background: var(--surface);
+      backdrop-filter: blur(32px) saturate(180%) brightness(1.12);
+      -webkit-backdrop-filter: blur(32px) saturate(180%) brightness(1.12);
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--glass-shadow), 0 0 0 0.5px rgba(255,255,255,0.6) inset;
+    }
+    .glass-strong {
+      background: var(--surface-strong);
+      backdrop-filter: blur(48px) saturate(200%) brightness(1.16);
+      -webkit-backdrop-filter: blur(48px) saturate(200%) brightness(1.16);
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--glass-shadow), 0 0 0 0.5px rgba(255,255,255,0.8) inset;
+    }
 
     /* ── NAV ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 999;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 1rem 2.5rem;
-      background: rgba(255,255,255,0.72);
-      backdrop-filter: blur(20px) saturate(180%);
-      -webkit-backdrop-filter: blur(20px) saturate(180%);
-      border-bottom: 1px solid rgba(255,255,255,0.85);
-      box-shadow: 0 2px 20px rgba(0,0,0,0.07);
+      padding: 0.85rem 2.5rem;
+      background: rgba(255,255,255,0.60);
+      backdrop-filter: blur(40px) saturate(200%) brightness(1.14);
+      -webkit-backdrop-filter: blur(40px) saturate(200%) brightness(1.14);
+      border-bottom: 1px solid rgba(255,255,255,0.90);
+      box-shadow: 0 1px 32px rgba(80,120,220,0.12), 0 2px 0 rgba(255,255,255,0.90) inset;
+      transition: background 0.4s, border-color 0.4s;
     }
-    .nav-logo { font-size: 1.4rem; font-weight: 800; color: #111; letter-spacing: 1px; }
-    .nav-right { display: flex; align-items: center; gap: 1.75rem; }
-    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+    .nav-logo {
+      font-size: 1.3rem; font-weight: 800; color: var(--text);
+      letter-spacing: -0.5px;
+    }
+    .nav-logo span { opacity: 0.35; }
+    .nav-right { display: flex; align-items: center; gap: 1.5rem; }
+    .nav-links { display: flex; gap: 1.6rem; list-style: none; }
     .nav-links a {
-      font-size: 0.82rem; font-weight: 500; color: #777; transition: color 0.2s;
-      padding-bottom: 2px; border-bottom: 2px solid transparent;
+      font-size: 0.8rem; font-weight: 500; color: var(--text-secondary);
+      transition: color 0.2s; position: relative; padding-bottom: 2px;
     }
-    .nav-links a:hover, .nav-links a.active { color: #111; border-bottom-color: #111; }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+      height: 1.5px; background: var(--text); border-radius: 99px;
+      transform: scaleX(0); transition: transform 0.25s ease;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--text); }
+    .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
+
+    .theme-toggle {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--surface);
+      border: 1px solid var(--border-subtle);
+      color: var(--text);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: all 0.25s;
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    }
+    .theme-toggle:hover { background: var(--surface-strong); transform: scale(1.05); }
+
     .lang-toggle {
-      display: flex; align-items: center; gap: 0.35rem;
-      background: rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.12);
-      border-radius: 99px; padding: 0.28rem 0.6rem;
+      display: flex; align-items: center;
+      background: var(--surface-strong);
+      border: 1px solid var(--border-subtle);
+      border-radius: 99px; padding: 0.22rem 0.45rem; gap: 0.2rem;
     }
     .lang-btn {
-      font-size: 0.7rem; font-weight: 700; padding: 0.18rem 0.5rem;
+      font-size: 0.68rem; font-weight: 700; padding: 0.2rem 0.5rem;
       border-radius: 99px; border: none; cursor: pointer; transition: all 0.2s;
-      background: transparent; color: #999; font-family: 'Poppins', sans-serif;
+      background: transparent; color: var(--text-muted); font-family: 'Inter', sans-serif;
     }
-    .lang-btn.active { background: #111; color: #fff; }
+    .lang-btn.active { background: var(--accent); color: var(--accent-inv); }
+
     .hamburger-btn {
-      display: none; background: none; border: none; cursor: pointer; color: #555; padding: 4px;
+      display: none; background: none; border: none; cursor: pointer;
+      color: var(--text-secondary); padding: 4px;
     }
 
     /* ── MOBILE MENU ── */
     .mobile-menu {
       display: none; position: fixed; inset: 0; z-index: 998;
-      background: rgba(255,255,255,0.97);
-      backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
-      flex-direction: column; align-items: center; justify-content: center; gap: 2rem;
+      background: var(--surface-strong);
+      backdrop-filter: blur(32px); -webkit-backdrop-filter: blur(32px);
+      flex-direction: column; align-items: center; justify-content: center; gap: 2.2rem;
     }
     .mobile-menu.open { display: flex; }
     .mobile-menu a {
-      font-size: 1.5rem; font-weight: 700; color: #888;
+      font-size: 1.6rem; font-weight: 700; color: var(--text-secondary);
+      transition: color 0.2s;
     }
-    .mobile-menu a.active { color: #111; }
+    .mobile-menu a:hover, .mobile-menu a.active { color: var(--text); }
+
+    /* ── SECTION WRAPPER ── */
+    .sec-outer { position: relative; }
+    .sec-outer.sec-alt { background: rgba(0,0,0,0.18); }
+    .sec-wrap { max-width: 1100px; margin: 0 auto; padding: 6rem 2.5rem; }
+
+    .sec-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--text-muted);
+      background: var(--surface); border: 1px solid var(--border-subtle);
+      padding: 0.3rem 0.9rem; border-radius: 99px;
+      margin-bottom: 1.2rem;
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    }
+    .sec-badge::before {
+      content: ''; width: 5px; height: 5px; border-radius: 50%;
+      background: var(--text-muted); opacity: 0.5;
+    }
+    .sec-title {
+      font-size: clamp(1.6rem, 3vw, 2.1rem); font-weight: 800;
+      color: var(--text); letter-spacing: -0.8px; margin-bottom: 0.5rem;
+      line-height: 1.1;
+    }
+    .sec-sub {
+      font-size: 0.78rem; color: var(--text-muted); font-weight: 500;
+      letter-spacing: 1px; text-transform: uppercase; margin-bottom: 2.5rem;
+    }
 
     /* ── HERO ── */
     .hero {
       min-height: 100vh; display: flex; align-items: center;
-      padding: 8rem 2.5rem 4rem;
-      background: linear-gradient(135deg, #f7f7f7 0%, #ececec 100%);
+      padding: 8rem 2.5rem 5rem;
     }
     .hero-inner {
       max-width: 1100px; margin: 0 auto; width: 100%;
-      display: flex; align-items: center; gap: 4rem;
+      display: flex; align-items: center; gap: 5rem;
     }
     .hero-text { flex: 1; }
     .hero-tag {
-      display: inline-block; font-size: 0.7rem; font-weight: 600;
-      letter-spacing: 2.5px; color: #555; text-transform: uppercase;
-      background: rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.12);
-      padding: 0.35rem 1rem; border-radius: 99px; margin-bottom: 1.4rem;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 2px; color: var(--text-secondary); text-transform: uppercase;
+      background: var(--surface); border: 1px solid var(--border-subtle);
+      padding: 0.4rem 1rem; border-radius: 99px; margin-bottom: 1.6rem;
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
     }
+    .hero-tag::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #34d399; }
     .hero-name {
-      font-size: clamp(2.4rem, 4.6vw, 4rem); font-weight: 900;
-      line-height: 1.06; color: #000; margin-bottom: 0.75rem; letter-spacing: -1px;
+      font-size: clamp(2.6rem, 5vw, 4.2rem); font-weight: 900;
+      line-height: 1.04; color: var(--text); margin-bottom: 0.8rem;
+      letter-spacing: -1.5px;
     }
-    .hero-role { font-size: 0.92rem; color: #777; font-weight: 400; margin-bottom: 1.4rem; }
+    .hero-role {
+      font-size: 0.9rem; color: var(--text-secondary); font-weight: 400;
+      margin-bottom: 1.5rem;
+    }
     .hero-bio {
-      font-size: 0.88rem; line-height: 1.9; color: #666;
-      max-width: 500px; margin-bottom: 2rem;
+      font-size: 0.88rem; line-height: 1.95; color: var(--text-secondary);
+      max-width: 480px; margin-bottom: 2rem; font-weight: 300;
     }
-    .hero-cta { display: flex; gap: 0.85rem; flex-wrap: wrap; }
+    .hero-cta { display: flex; gap: 0.8rem; flex-wrap: wrap; }
     .btn {
-      display: inline-block; padding: 0.68rem 1.85rem; border-radius: 4px;
-      font-size: 0.84rem; font-weight: 600; cursor: pointer; transition: all 0.2s;
-      font-family: 'Poppins', sans-serif;
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      padding: 0.72rem 1.8rem; border-radius: 99px;
+      font-size: 0.82rem; font-weight: 600; cursor: pointer;
+      transition: all 0.25s cubic-bezier(.34,1.56,.64,1);
+      font-family: 'Inter', sans-serif; border: none;
     }
-    .btn-dark { background: #111; color: #fff; border: 1.5px solid #111; }
-    .btn-dark:hover { background: #333; }
-    .btn-outline { background: transparent; color: #111; border: 1.5px solid rgba(0,0,0,0.25); }
-    .btn-outline:hover { border-color: #111; background: rgba(0,0,0,0.04); }
-    .hero-socials { display: flex; gap: 0.65rem; margin-top: 1.75rem; }
+    .btn-dark {
+      background: var(--accent); color: var(--accent-inv);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+    .btn-dark:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.3); }
+    .btn-outline {
+      background: var(--surface); color: var(--text);
+      border: 1px solid var(--border-subtle);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    }
+    .btn-outline:hover { transform: translateY(-2px); box-shadow: var(--glass-shadow); }
+
+    .hero-socials { display: flex; gap: 0.6rem; margin-top: 2rem; }
     .soc-btn {
-      width: 40px; height: 40px; border-radius: 50%;
-      border: 1px solid rgba(0,0,0,0.15); background: rgba(255,255,255,0.6);
+      width: 42px; height: 42px; border-radius: 50%;
+      background: var(--surface); border: 1px solid var(--border-subtle);
       display: flex; align-items: center; justify-content: center;
-      color: #888; transition: all 0.2s; cursor: pointer;
+      color: var(--text-secondary); transition: all 0.25s;
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
     }
-    .soc-btn:hover { border-color: #111; color: #111; }
+    .soc-btn:hover { background: var(--accent); color: var(--accent-inv); transform: translateY(-2px); }
+
     .hero-photo {
-      flex-shrink: 0; width: 275px; height: 325px; border-radius: 1.5rem; overflow: hidden;
-      background: rgba(255,255,255,0.55); backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      border: 1px solid rgba(255,255,255,0.85); box-shadow: 0 8px 48px rgba(0,0,0,0.14);
+      flex-shrink: 0; width: 290px; height: 345px; border-radius: 2rem; overflow: hidden;
+      background: var(--surface); backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid var(--border);
+      box-shadow: 0 24px 80px rgba(0,0,0,0.2), 0 0 0 1px var(--border);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
+    .hero-photo:hover { transform: translateY(-6px); box-shadow: 0 40px 100px rgba(0,0,0,0.25); }
     .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
 
-    /* ── SECTION ── */
-    .sec-wrap { max-width: 1100px; margin: 0 auto; padding: 5rem 2.5rem; }
-    .sec-alt { background: rgba(255,255,255,0.45); }
-    .sec-title {
-      font-size: 1.7rem; font-weight: 800; color: #111; letter-spacing: -0.5px;
-      margin-bottom: 0.3rem;
-    }
-    .sec-title::after {
-      content: ''; display: block; width: 36px; height: 2px;
-      background: #111; margin-top: 0.55rem; opacity: 0.22;
-    }
-    .sec-sub {
-      font-size: 0.73rem; color: #aaa; margin-top: 0.55rem; margin-bottom: 2.5rem;
-      font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase;
-    }
-
     /* ── ABOUT ── */
-    .about-text { max-width: 720px; font-size: 1.02rem; line-height: 2; color: #555; font-weight: 300; }
+    .about-glass {
+      border-radius: 1.5rem; padding: 2.5rem;
+      max-width: 800px;
+    }
+    .about-text {
+      font-size: 1.05rem; line-height: 2.1; color: var(--text-secondary);
+      font-weight: 300;
+    }
+    .about-text em { color: var(--text); font-style: normal; font-weight: 600; }
 
     /* ── TABS ── */
-    .tabs { display: flex; gap: 0.55rem; flex-wrap: wrap; margin-bottom: 2rem; }
+    .tabs { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
     .tab {
-      padding: 0.42rem 1.25rem; border-radius: 99px;
-      border: 1px solid rgba(0,0,0,0.12); background: rgba(255,255,255,0.55);
-      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-      color: #777; font-size: 0.78rem; font-weight: 500; cursor: pointer;
-      transition: all 0.2s; font-family: 'Poppins', sans-serif;
+      padding: 0.45rem 1.3rem; border-radius: 99px;
+      border: 1px solid var(--border-subtle);
+      background: var(--surface);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      color: var(--text-secondary); font-size: 0.78rem; font-weight: 500;
+      cursor: pointer; transition: all 0.22s; font-family: 'Inter', sans-serif;
     }
-    .tab:hover { border-color: rgba(0,0,0,0.3); color: #333; }
-    .tab.on { background: #111; color: #fff; border-color: #111; backdrop-filter: none; }
+    .tab:hover { color: var(--text); border-color: var(--text-muted); }
+    .tab.on { background: var(--accent); color: var(--accent-inv); border-color: var(--accent); backdrop-filter: none; }
     .hidden { display: none !important; }
 
-    /* ── GRIDS ── */
+    /* ── CARDS ── */
     .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
     .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
     .card {
-      border-radius: 0.85rem; overflow: hidden; transition: all 0.25s;
-      background: rgba(255,255,255,0.55); backdrop-filter: blur(16px) saturate(160%);
-      -webkit-backdrop-filter: blur(16px) saturate(160%);
-      border: 1px solid rgba(255,255,255,0.85); box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+      border-radius: 1.3rem; overflow: hidden; transition: all 0.3s cubic-bezier(.34,1.56,.64,1);
+      background: var(--surface);
+      backdrop-filter: blur(28px) saturate(200%) brightness(1.08);
+      -webkit-backdrop-filter: blur(28px) saturate(200%) brightness(1.08);
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--glass-shadow);
+      cursor: pointer;
     }
-    .card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.13); }
-    .card-img-sq { width: 100%; aspect-ratio: 1/1; object-fit: contain; background: rgba(255,255,255,0.7); }
+    .card:hover { transform: translateY(-7px) scale(1.015); box-shadow: var(--card-hover); }
+    .card-img-sq { width: 100%; aspect-ratio: 1/1; object-fit: contain; background: var(--surface-strong); }
     .card-img-cov { width: 100%; aspect-ratio: 1/1; object-fit: cover; }
     .card-img-nat { width: 100%; object-fit: contain; }
-    .card-info { padding: 0.7rem 1rem; }
-    .card-cat { font-size: 0.63rem; color: #aaa; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 0.18rem; }
-    .card-name { font-size: 0.83rem; color: #222; font-weight: 600; }
+    .card-info { padding: 0.75rem 1rem; }
+    .card-cat { font-size: 0.6rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 0.2rem; }
+    .card-name { font-size: 0.82rem; color: var(--text); font-weight: 600; }
 
     /* ── EXPERIENCE ── */
-    .exp-list { display: flex; flex-direction: column; }
+    .exp-list { display: flex; flex-direction: column; gap: 1rem; }
     .exp-item {
-      display: grid; grid-template-columns: 190px 1fr; gap: 2.5rem;
-      padding: 2.5rem 0; border-bottom: 1px solid rgba(0,0,0,0.07);
+      display: grid; grid-template-columns: 200px 1fr; gap: 2.5rem;
+      padding: 2rem 2rem;
+      border-radius: 1.4rem;
+      background: var(--surface);
+      backdrop-filter: blur(28px) saturate(200%) brightness(1.08);
+      -webkit-backdrop-filter: blur(28px) saturate(200%) brightness(1.08);
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--glass-shadow);
+      transition: box-shadow 0.25s, transform 0.25s;
     }
-    .exp-item:first-child { padding-top: 0; }
+    .exp-item:hover { transform: translateY(-3px); box-shadow: var(--card-hover); }
+    .exp-item:first-child { padding-top: 2rem; }
     .exp-item:last-child { border-bottom: none; }
-    .exp-date { font-size: 0.73rem; color: #aaa; font-weight: 600; line-height: 1.6; padding-top: 0.15rem; }
-    .exp-role { font-size: 0.98rem; font-weight: 700; color: #111; margin-bottom: 0.18rem; }
-    .exp-company { font-size: 0.8rem; color: #999; margin-bottom: 0.9rem; font-weight: 500; }
-    .exp-desc { font-size: 0.84rem; color: #777; line-height: 1.85; margin-bottom: 0.6rem; }
-    .exp-imgs {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; margin-top: 1rem;
-    }
-    .exp-imgs.cols-2 { grid-template-columns: repeat(2, 1fr); }
-    .exp-img {
-      width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 0.5rem;
-      background: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.8);
-    }
+    .exp-date { font-size: 0.72rem; color: var(--text-muted); font-weight: 600; line-height: 1.6; padding-top: 0.2rem; }
+    .exp-role { font-size: 0.98rem; font-weight: 700; color: var(--text); margin-bottom: 0.2rem; }
+    .exp-company { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 0.9rem; font-weight: 500; }
+    .exp-desc { font-size: 0.83rem; color: var(--text-secondary); line-height: 1.9; margin-bottom: 0.5rem; }
 
-    /* ── VIDEO SLIDER (multi-card) ── */
+    /* ── VIDEO SLIDER ── */
     .vslider-wrap { margin-top: 1.5rem; }
-    .vslider-row {
-      display: flex; align-items: center; gap: 0.75rem;
-    }
+    .vslider-row { display: flex; align-items: center; gap: 0.75rem; }
     .vslider-arrow {
-      flex-shrink: 0; width: 42px; height: 42px; border-radius: 50%;
-      border: 1.5px solid rgba(0,0,0,0.12); background: rgba(255,255,255,0.95);
-      box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+      flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%;
+      background: var(--surface-strong); border: 1px solid var(--border-subtle);
+      box-shadow: var(--glass-shadow);
       display: flex; align-items: center; justify-content: center;
-      cursor: pointer; transition: all 0.2s; color: #333;
+      cursor: pointer; transition: all 0.25s; color: var(--text-secondary);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
       align-self: center;
     }
-    .vslider-arrow:hover:not(:disabled) { background: #111; color: #fff; border-color: #111; box-shadow: 0 4px 16px rgba(0,0,0,0.18); }
-    .vslider-arrow:disabled { opacity: 0.3; cursor: not-allowed; background: rgba(240,240,240,0.7); box-shadow: none; color: #bbb; }
-    .vslider-grid {
-      flex: 1;
-      display: grid;
-      gap: 0.75rem;
+    .vslider-arrow:hover:not(:disabled) {
+      background: var(--accent); color: var(--accent-inv);
+      transform: scale(1.08); box-shadow: 0 8px 24px rgba(0,0,0,0.25);
     }
+    .vslider-arrow:disabled { opacity: 0.25; cursor: not-allowed; }
+    .vslider-grid { flex: 1; display: grid; gap: 0.75rem; }
+
     .vslide-card {
-      position: relative; border-radius: 0.85rem; overflow: hidden;
-      background: #1a1a1a;
-      border: 1px solid rgba(255,255,255,0.12);
-      box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+      position: relative; border-radius: 1rem; overflow: hidden;
+      background: #111;
+      border: 1px solid var(--border);
+      box-shadow: var(--glass-shadow);
       aspect-ratio: 9/16;
+      cursor: pointer;
     }
-    .vslide-card video { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .vslide-thumb {
+      position: absolute; inset: 0;
+      background: #111;
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity 0.3s;
+    }
+    .vslide-thumb img {
+      width: 100%; height: 100%; object-fit: cover;
+      display: block;
+    }
+    .vslide-thumb-gradient {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,0.6) 100%);
+    }
+    .vslide-play-btn {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      z-index: 2; transition: opacity 0.2s;
+    }
+    .vslide-play-icon {
+      width: 52px; height: 52px; border-radius: 50%;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+      transition: transform 0.25s cubic-bezier(.34,1.56,.64,1);
+    }
+    .vslide-card:hover .vslide-play-icon { transform: scale(1.12); }
+    .vslide-play-icon svg { width: 20px; height: 20px; fill: #111; margin-left: 3px; }
+    .vslide-card video {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      position: absolute; inset: 0; opacity: 0; transition: opacity 0.3s;
+    }
+    .vslide-card.playing .vslide-thumb { opacity: 0; pointer-events: none; }
+    .vslide-card.playing video { opacity: 1; }
+    .vslide-card.playing .vslide-play-btn { opacity: 0; pointer-events: none; }
     .vslide-stats {
       position: absolute; bottom: 0; left: 0; right: 0;
-      background: linear-gradient(transparent, rgba(0,0,0,0.75));
-      padding: 2rem 0.75rem 0.85rem;
+      background: linear-gradient(transparent, rgba(0,0,0,0.8));
+      padding: 2.5rem 0.85rem 0.9rem;
       display: flex; justify-content: space-around; align-items: center;
-      pointer-events: none;
+      pointer-events: none; z-index: 3;
     }
     .vslide-stat {
       display: flex; align-items: center; gap: 4px;
-      color: #fff; font-size: 0.7rem; font-weight: 600;
+      color: #fff; font-size: 0.68rem; font-weight: 600;
     }
     .vslide-dots {
-      display: flex; justify-content: center; gap: 0.4rem; margin-top: 1rem;
+      display: flex; justify-content: center; gap: 0.45rem; margin-top: 1rem;
     }
     .vslide-dot {
-      width: 7px; height: 7px; border-radius: 50%;
-      background: rgba(0,0,0,0.15); transition: all 0.22s; cursor: pointer; border: none;
+      width: 7px; height: 7px; border-radius: 99px;
+      background: var(--text-muted); opacity: 0.4;
+      transition: all 0.25s; cursor: pointer; border: none;
     }
-    .vslide-dot.on { background: #111; width: 22px; border-radius: 4px; }
+    .vslide-dot.on { background: var(--accent); width: 22px; opacity: 1; }
+
+    /* ── VIDEO GRID ── */
+    .video-grid-wrap { border-radius: 0.8rem; overflow: hidden; }
+    .video-cell {
+      position: relative; overflow: hidden; border-radius: 0.7rem;
+      background: #111; cursor: pointer;
+    }
+    .video-cell video { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .video-cell-thumb {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    }
+    .video-cell-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .video-cell-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.05), rgba(0,0,0,0.5));
+    }
+    .video-cell-play {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      z-index: 2;
+    }
+    .video-cell-play-btn {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: rgba(255,255,255,0.9);
+      display: flex; align-items: center; justify-content: center;
+      transition: transform 0.2s;
+    }
+    .video-cell:hover .video-cell-play-btn { transform: scale(1.12); }
+    .video-cell-play-btn svg { width: 15px; height: 15px; fill: #111; margin-left: 2px; }
+    .video-cell.playing .video-cell-thumb,
+    .video-cell.playing .video-cell-play { opacity: 0; pointer-events: none; }
+    .video-cell-thumb-img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%; object-fit: cover;
+      opacity: 0; transition: opacity 0.45s ease;
+    }
+    .video-cell-thumb-img.loaded { opacity: 1; }
+    .video-cell-thumb-spinner {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .video-cell-thumb-spinner svg { animation: spin 1.2s linear infinite; opacity: 0.3; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── LIGHTBOX ── */
+    .lightbox-overlay {
+      position: fixed; inset: 0; z-index: 9999;
+      background: rgba(0,0,0,0.92);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .lightbox-overlay.open { opacity: 1; pointer-events: all; }
+    .lightbox-inner {
+      position: relative; max-width: 92vw; max-height: 92vh;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .lightbox-img {
+      max-width: 88vw; max-height: 88vh;
+      object-fit: contain; border-radius: 1rem;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.8);
+      transform: scale(0.92); transition: transform 0.35s cubic-bezier(.34,1.56,.64,1);
+    }
+    .lightbox-overlay.open .lightbox-img { transform: scale(1); }
+    .lightbox-close {
+      position: absolute; top: -52px; right: -8px;
+      width: 40px; height: 40px; border-radius: 50%;
+      background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      color: #fff; font-size: 1.4rem; display: flex; align-items: center;
+      justify-content: center; cursor: pointer; transition: all 0.2s;
+      line-height: 1;
+    }
+    .lightbox-close:hover { background: rgba(255,255,255,0.22); transform: scale(1.1); }
+    .lb-nav {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 44px; height: 44px; border-radius: 50%;
+      background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      color: #fff; display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: all 0.2s;
+    }
+    .lb-nav:hover { background: rgba(255,255,255,0.24); }
+    .lb-prev { left: -60px; }
+    .lb-next { right: -60px; }
+    .lb-caption {
+      position: absolute; bottom: -40px; left: 0; right: 0;
+      text-align: center; font-size: 0.8rem; color: rgba(255,255,255,0.5);
+      font-weight: 500;
+    }
+    .zoomable {
+      cursor: zoom-in; transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .zoomable:hover { transform: scale(1.03); box-shadow: 0 8px 32px rgba(0,0,0,0.25); }
+    .card .zoomable { transform: none; box-shadow: none; }
 
     /* ── CONTACT ── */
-    .contact-info-wrap { max-width: 560px; }
-    .cinfo-title { font-size: 1.08rem; font-weight: 700; color: #111; margin-bottom: 0.7rem; }
-    .cinfo-desc { font-size: 0.86rem; color: #888; line-height: 1.85; margin-bottom: 2rem; }
-    .citem { display: flex; align-items: center; gap: 0.9rem; margin-bottom: 1.1rem; }
-    .cicon {
-      width: 44px; height: 44px; background: rgba(255,255,255,0.65);
-      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.9); box-shadow: 0 2px 12px rgba(0,0,0,0.07);
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      color: #777; flex-shrink: 0;
+    .contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .cinfo-title { font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 0.7rem; }
+    .cinfo-desc { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.9; margin-bottom: 2rem; }
+    .citem {
+      display: flex; align-items: center; gap: 0.9rem; margin-bottom: 1rem;
+      padding: 0.85rem 1rem; border-radius: 0.85rem;
+      border: 1px solid var(--border-subtle);
+      background: var(--surface);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      transition: all 0.22s; text-decoration: none; color: var(--text);
     }
-    .clabel { font-size: 0.65rem; color: #bbb; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; margin-bottom: 0.08rem; }
-    .cval { font-size: 0.88rem; color: #333; font-weight: 500; }
+    .citem:hover { transform: translateX(4px); box-shadow: var(--glass-shadow); }
+    .cicon {
+      width: 42px; height: 42px; background: var(--bg);
+      border: 1px solid var(--border-subtle); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-secondary); flex-shrink: 0;
+    }
+    .clabel { font-size: 0.62rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; margin-bottom: 0.05rem; }
+    .cval { font-size: 0.86rem; color: var(--text); font-weight: 500; }
 
     /* ── FOOTER ── */
     footer {
-      background: rgba(255,255,255,0.65); backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-top: 1px solid rgba(255,255,255,0.85);
-      text-align: center; padding: 2rem 2.5rem;
+      background: var(--surface);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-top: 1px solid var(--border-subtle);
+      text-align: center; padding: 2.5rem 2.5rem;
     }
-    footer p { font-size: 0.78rem; color: #bbb; }
-    footer span { color: #888; }
+    footer p { font-size: 0.76rem; color: var(--text-muted); }
+    footer span { color: var(--text-secondary); }
 
-    /* ── MOBILE RESPONSIVE ── */
+    /* ── EXPERIENCE IMAGE GRID ── */
+    .exp-media-grid { margin-top: 1rem; display: flex; flex-direction: column; gap: 0.6rem; }
+    .exp-img-row { display: grid; gap: 0.6rem; }
+    .exp-img-row.cols-3 { grid-template-columns: repeat(3,1fr); }
+    .exp-img-row.cols-2 { grid-template-columns: repeat(2,1fr); }
+    .exp-img-row.cols-2-1-1 { grid-template-columns: 2fr 1fr 1fr; }
+    .exp-img-cell {
+      border-radius: 0.7rem; overflow: hidden;
+      background: var(--surface); border: 1px solid var(--border);
+    }
+    .exp-img-cell img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .exp-img-cell.ratio-9-16 { aspect-ratio: 9/16; }
+    .exp-img-cell.ratio-16-9 { aspect-ratio: 16/9; }
+    .exp-img-cell.ratio-1-1 { aspect-ratio: 1/1; }
+    .exp-img-cell.ratio-book { aspect-ratio: 994/1350; }
+
+    .book-link {
+      display: block; text-decoration: none; position: relative;
+      border-radius: 0.7rem; overflow: hidden;
+      border: 1px solid var(--border); background: #111;
+    }
+    .book-link.ratio-book { aspect-ratio: 994/1350; }
+    .book-link img { width: 100%; height: 100%; object-fit: cover; opacity: 0.85; display: block; }
+    .book-overlay {
+      position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+      background: rgba(0,0,0,0.35);
+    }
+    .book-label {
+      font-size: 0.55rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; border: 1px solid rgba(255,255,255,0.4);
+      padding: 0.25rem 0.6rem; background: rgba(0,0,0,0.5);
+      color: #fff; border-radius: 3px;
+    }
+
+    /* ── IFRAME EMBED ── */
+    .iframe-embed {
+      border-radius: 0.85rem; overflow: hidden;
+      background: #111; border: 1px solid var(--border);
+    }
+    .iframe-embed iframe { width: 100%; height: 100%; border: none; display: block; }
+
+    /* ── FADE IN ── */
+    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── MOBILE ── */
     @media (max-width: 768px) {
-      nav { padding: 0.85rem 1.25rem; }
+      nav { padding: 0.75rem 1.25rem; }
       .nav-links { display: none; }
       .hamburger-btn { display: flex; align-items: center; }
-      .hero { padding: 6rem 1.25rem 3rem; }
+      .hero { padding: 6.5rem 1.25rem 3.5rem; }
       .hero-inner { flex-direction: column-reverse; gap: 2rem; text-align: center; }
-      .hero-photo { width: 180px; height: 215px; align-self: center; }
+      .hero-photo { width: 190px; height: 225px; align-self: center; }
       .hero-cta { justify-content: center; }
       .hero-bio { margin-left: auto; margin-right: auto; }
-      .sec-wrap { padding: 3rem 1.25rem; }
-      .exp-item { grid-template-columns: 1fr; gap: 0.4rem; }
+      .hero-socials { justify-content: center; }
+      .sec-wrap { padding: 4rem 1.25rem; }
+      .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
       .grid-3 { grid-template-columns: repeat(2, 1fr); }
       .grid-2 { grid-template-columns: 1fr; }
-      .exp-imgs { grid-template-columns: repeat(2, 1fr); }
-      .contact-layout { grid-template-columns: 1fr !important; gap: 2rem !important; }
+      .exp-img-row.cols-3 { grid-template-columns: repeat(2,1fr); }
+      .contact-layout { grid-template-columns: 1fr; gap: 2rem; }
+      .exp-img-row.cols-2-1-1 { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 480px) {
       .grid-3 { grid-template-columns: 1fr; }
+      .exp-img-row.cols-3 { grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
 <body>
 
+<!-- CONTENT LAYER -->
+<div class="content-layer">
+
 <!-- NAV -->
 <nav>
-  <div class="nav-logo">Zaky.</div>
+  <div class="nav-logo">Zaky<span>.</span></div>
   <div class="nav-right">
     <ul class="nav-links" id="navLinks">
       <li><a href="#beranda" class="nav-link" data-en="Home" data-id="Beranda">Home</a></li>
@@ -304,6 +624,10 @@
       <button class="lang-btn active" id="btnEN" onclick="setLang('en')">EN</button>
       <button class="lang-btn" id="btnID" onclick="setLang('id')">ID</button>
     </div>
+    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+      <svg id="themeIconSun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+      <svg id="themeIconMoon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
     <button class="hamburger-btn" id="hamburgerBtn" onclick="toggleMenu()" aria-label="Menu">
       <svg id="menuIcon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
         <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
@@ -324,13 +648,13 @@
 <!-- HERO -->
 <section id="beranda" class="hero">
   <div class="hero-inner">
-    <div class="hero-text">
-      <span class="hero-tag">Visual Alchemist • 3D Artist • Animator</span>
+    <div class="hero-text fade-in">
+      <span class="hero-tag">Visual Alchemist &bull; 3D Artist &bull; Animator</span>
       <h1 class="hero-name">M Zaky<br>Mahid Ruwansyah</h1>
       <p class="hero-role"
-         data-en="Graphic Design · 2D Animation · 3D Art · Video Editing"
-         data-id="Graphic Design · Animasi 2D · 3D Art · Video Editing">
-        Graphic Design · 2D Animation · 3D Art · Video Editing
+         data-en="Graphic Design &middot; 2D Animation &middot; 3D Art &middot; Video Editing"
+         data-id="Graphic Design &middot; Animasi 2D &middot; 3D Art &middot; Video Editing">
+        Graphic Design &middot; 2D Animation &middot; 3D Art &middot; Video Editing
       </p>
       <p class="hero-bio"
          data-en="A visual creator who has been actively learning graphic design, 2D animation, illustration, video editing, and 3D Art since 2016. Combining creativity with technical skills to produce communicative and visually engaging works."
@@ -341,8 +665,19 @@
         <a href="#karya" class="btn btn-dark" data-en="View Works" data-id="Lihat Karya">View Works</a>
         <a href="#kontak" class="btn btn-outline" data-en="Contact Me" data-id="Hubungi Saya">Contact Me</a>
       </div>
+      <div class="hero-socials">
+        <a href="https://instagram.com/muhzakymah.id" target="_blank" rel="noopener" class="soc-btn" aria-label="Instagram">
+          <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a href="https://wa.me/6289687419589" target="_blank" rel="noopener" class="soc-btn" aria-label="WhatsApp">
+          <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.13.97.36 1.92.7 2.84a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6.08 6.08l.96-.96a2 2 0 0 1 2.11-.45c.92.34 1.87.57 2.84.7a2 2 0 0 1 1.72 2.02z"/></svg>
+        </a>
+        <a href="mailto:Zakidodi10@gmail.com" class="soc-btn" aria-label="Email">
+          <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </a>
+      </div>
     </div>
-    <div class="hero-photo">
+    <div class="hero-photo fade-in" style="animation-delay:0.15s">
       <img src="https://github.com/datazaki25-web/my-portfolio/blob/main/assets/images/foto-zaky-full.png?raw=true"
            alt="M Zaky Mahid Ruwansyah"
            onerror="this.src='https://ui-avatars.com/api/?name=MZ&size=330&background=eee&color=111&bold=true&length=2'" />
@@ -350,66 +685,73 @@
   </div>
 </section>
 
-<!-- TENTANG -->
-<section id="tentang" class="sec-alt">
+<!-- ABOUT -->
+<section id="tentang" class="sec-outer sec-alt">
   <div class="sec-wrap">
-    <div class="sec-title" data-en="About Me" data-id="Tentang Saya">About Me</div>
-    <div class="sec-sub" data-en="About Artist" data-id="Profil Seniman">About Artist</div>
-    <p class="about-text"
-       data-en='"A visual creator focused on graphic design, 2D animation, illustration, video editing, and 3D Art since 2016. I have a profound interest in visual arts and technology, combining creativity with technical skills to produce communicative and visually engaging works."'
-       data-id='"Seorang yang fokus bidang kreator visual yang sejak 2016 aktif belajar di bidang desain grafis, animasi 2D, ilustrasi, editing video, dan 3D Artist. Saya memiliki ketertarikan mendalam terhadap seni visual dan teknologi, serta terbiasa menggabungkan kreativitas dengan keterampilan teknis untuk menghasilkan karya yang komunikatif dan menarik secara visual."'>
-      "A visual creator focused on graphic design, 2D animation, illustration, video editing, and 3D Art since 2016. I have a profound interest in visual arts and technology, combining creativity with technical skills to produce communicative and visually engaging works."
-    </p>
+    <div class="fade-in">
+      <div class="sec-badge" data-en="About Artist" data-id="Profil Seniman">About Artist</div>
+      <div class="sec-title" data-en="About Me" data-id="Tentang Saya">About Me</div>
+      <div class="sec-sub" data-en="Who I am" data-id="Siapa Saya">Who I am</div>
+    </div>
+    <div class="about-glass glass fade-in" style="animation-delay:0.1s; border-radius:1.5rem; padding:2.5rem;">
+      <p class="about-text"
+         data-en='"A visual creator focused on graphic design, 2D animation, illustration, video editing, and <em>3D Art since 2016</em>. I have a profound interest in visual arts and technology, combining creativity with technical skills to produce communicative and visually engaging works."'
+         data-id='"Seorang yang fokus bidang kreator visual yang sejak <em>2016</em> aktif belajar di bidang desain grafis, animasi 2D, ilustrasi, editing video, dan 3D Artist. Saya memiliki ketertarikan mendalam terhadap seni visual dan teknologi, serta terbiasa menggabungkan kreativitas dengan keterampilan teknis untuk menghasilkan karya yang komunikatif dan menarik secara visual."'>
+        "A visual creator focused on graphic design, 2D animation, illustration, video editing, and <em>3D Art since 2016</em>. I have a profound interest in visual arts and technology, combining creativity with technical skills to produce communicative and visually engaging works."
+      </p>
+    </div>
   </div>
 </section>
 
-<!-- KARYA -->
-<section id="karya">
+<!-- WORKS -->
+<section id="karya" class="sec-outer">
   <div class="sec-wrap">
-    <div class="sec-title" data-en="My Works" data-id="Karya Saya">My Works</div>
-    <div class="sec-sub" data-en="Selected Creative Work" data-id="Hasil Karya Pilihan">Selected Creative Work</div>
-
-    <div class="tabs">
+    <div class="fade-in">
+      <div class="sec-badge" data-en="Selected Creative Work" data-id="Hasil Karya Pilihan">Selected Creative Work</div>
+      <div class="sec-title" data-en="My Works" data-id="Karya Saya">My Works</div>
+      <div class="sec-sub" data-en="Portfolio Collection" data-id="Koleksi Portfolio">Portfolio Collection</div>
+    </div>
+    <div class="tabs fade-in" style="animation-delay:0.1s">
       <button class="tab on" onclick="switchTab('logo', this)" data-en="Logo Works" data-id="Logo Karya">Logo Works</button>
       <button class="tab"    onclick="switchTab('gambar', this)" data-en="Images"     data-id="Gambar">Images</button>
       <button class="tab"    onclick="switchTab('mockup', this)" data-en="3D Mock-up" data-id="3D Mock-up">3D Mock-up</button>
     </div>
-
     <!-- Logo -->
-    <div id="tab-logo" class="grid-3">
-      <div class="card"><img class="card-img-sq" src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/LOGO%20KARYA/1.png" alt="Logo 1" loading="lazy" onerror="this.style.opacity='0.2'"/><div class="card-info"><div class="card-cat">Logo</div><div class="card-name" data-en="Logo Work 1" data-id="Logo Karya 1">Logo Work 1</div></div></div>
-      <div class="card"><img class="card-img-sq" src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/LOGO%20KARYA/2.png" alt="Logo 2" loading="lazy" onerror="this.style.opacity='0.2'"/><div class="card-info"><div class="card-cat">Logo</div><div class="card-name" data-en="Logo Work 2" data-id="Logo Karya 2">Logo Work 2</div></div></div>
-      <div class="card"><img class="card-img-sq" src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/LOGO%20KARYA/3.png" alt="Logo 3" loading="lazy" onerror="this.style.opacity='0.2'"/><div class="card-info"><div class="card-cat">Logo</div><div class="card-name" data-en="Logo Work 3" data-id="Logo Karya 3">Logo Work 3</div></div></div>
-      <div class="card"><img class="card-img-sq" src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/LOGO%20KARYA/4.png" alt="Logo 4" loading="lazy" onerror="this.style.opacity='0.2'"/><div class="card-info"><div class="card-cat">Logo</div><div class="card-name" data-en="Logo Work 4" data-id="Logo Karya 4">Logo Work 4</div></div></div>
-      <div class="card"><img class="card-img-sq" src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/LOGO%20KARYA/5.png" alt="Logo 5" loading="lazy" onerror="this.style.opacity='0.2'"/><div class="card-info"><div class="card-cat">Logo</div><div class="card-name" data-en="Logo Work 5" data-id="Logo Karya 5">Logo Work 5</div></div></div>
-      <div class="card"><img class="card-img-sq" src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/LOGO%20KARYA/6.png" alt="Logo 6" loading="lazy" onerror="this.style.opacity='0.2'"/><div class="card-info"><div class="card-cat">Logo</div><div class="card-name" data-en="Logo Work 6" data-id="Logo Karya 6">Logo Work 6</div></div></div>
+    <div id="tab-logo" class="grid-3 fade-in" style="animation-delay:0.15s">
+      <div class="card" onclick="openLightbox('https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/LOGO%20KARYA/1.png','Logo Work 1','logo')"><img class="card-img-sq zoomable" src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/LOGO%20KARYA/1.png" alt="Logo 1" loading="lazy" onerror="this.style.opacity='0.2'"/><div class="card-info"><div class="card-cat">Logo</div><div class="card-name" data-en="Logo Work 1" data-id="Logo Karya 1">Logo Work 1</div></div></div>
+      <div class="card" onclick="openLightbox('https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/LOGO%20KARYA/2.png','Logo Work 2','logo')"><img class="card-img-sq zoomable" src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/LOGO%20KARYA/2.png" alt="Logo 2" loading="lazy" onerror="this.style.opacity='0.2'"/><div class="card-info"><div class="card-cat">Logo</div><div class="card-name" data-en="Logo Work 2" data-id="Logo Karya 2">Logo Work 2</div></div></div>
+      <div class="card" onclick="openLightbox('https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/LOGO%20KARYA/3.png','Logo Work 3','logo')"><img class="card-img-sq zoomable" src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/LOGO%20KARYA/3.png" alt="Logo 3" loading="lazy" onerror="this.style.opacity='0.2'"/><div class="card-info"><div class="card-cat">Logo</div><div class="card-name" data-en="Logo Work 3" data-id="Logo Karya 3">Logo Work 3</div></div></div>
+      <div class="card" onclick="openLightbox('https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/LOGO%20KARYA/4.png','Logo Work 4','logo')"><img class="card-img-sq zoomable" src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/LOGO%20KARYA/4.png" alt="Logo 4" loading="lazy" onerror="this.style.opacity='0.2'"/><div class="card-info"><div class="card-cat">Logo</div><div class="card-name" data-en="Logo Work 4" data-id="Logo Karya 4">Logo Work 4</div></div></div>
+      <div class="card" onclick="openLightbox('https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/LOGO%20KARYA/5.png','Logo Work 5','logo')"><img class="card-img-sq zoomable" src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/LOGO%20KARYA/5.png" alt="Logo 5" loading="lazy" onerror="this.style.opacity='0.2'"/><div class="card-info"><div class="card-cat">Logo</div><div class="card-name" data-en="Logo Work 5" data-id="Logo Karya 5">Logo Work 5</div></div></div>
+      <div class="card" onclick="openLightbox('https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/LOGO%20KARYA/6.png','Logo Work 6','logo')"><img class="card-img-sq zoomable" src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/LOGO%20KARYA/6.png" alt="Logo 6" loading="lazy" onerror="this.style.opacity='0.2'"/><div class="card-info"><div class="card-cat">Logo</div><div class="card-name" data-en="Logo Work 6" data-id="Logo Karya 6">Logo Work 6</div></div></div>
     </div>
-
     <!-- Gambar -->
     <div id="tab-gambar" class="grid-2 hidden">
-      <div class="card"><img class="card-img-cov" src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/Gambar/1.png" alt="Gambar 1" loading="lazy" onerror="this.style.opacity='0.2'"/><div class="card-info"><div class="card-cat" data-en="Image" data-id="Gambar">Image</div><div class="card-name" data-en="Image 1" data-id="Gambar 1">Image 1</div></div></div>
-      <div class="card"><img class="card-img-cov" src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/Gambar/2.png" alt="Gambar 2" loading="lazy" onerror="this.style.opacity='0.2'"/><div class="card-info"><div class="card-cat" data-en="Image" data-id="Gambar">Image</div><div class="card-name" data-en="Image 2" data-id="Gambar 2">Image 2</div></div></div>
+      <div class="card" onclick="openLightbox('https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/Gambar/1.png','Image 1','gambar')"><img class="card-img-cov zoomable" src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/Gambar/1.png" alt="Gambar 1" loading="lazy" onerror="this.style.opacity='0.2'"/><div class="card-info"><div class="card-cat" data-en="Image" data-id="Gambar">Image</div><div class="card-name" data-en="Image 1" data-id="Gambar 1">Image 1</div></div></div>
+      <div class="card" onclick="openLightbox('https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/Gambar/2.png','Image 2','gambar')"><img class="card-img-cov zoomable" src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/Gambar/2.png" alt="Gambar 2" loading="lazy" onerror="this.style.opacity='0.2'"/><div class="card-info"><div class="card-cat" data-en="Image" data-id="Gambar">Image</div><div class="card-name" data-en="Image 2" data-id="Gambar 2">Image 2</div></div></div>
     </div>
-
     <!-- 3D Mockup -->
     <div id="tab-mockup" class="grid-3 hidden">
-      <div class="card"><img class="card-img-nat" src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/3D%20Mock-up/1.png" alt="3D 1" loading="lazy" onerror="this.style.opacity='0.2'"/><div class="card-info"><div class="card-cat">3D Mock-up</div><div class="card-name" data-en="3D Mock-up 1" data-id="3D Mock-up 1">3D Mock-up 1</div></div></div>
-      <div class="card"><img class="card-img-nat" src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/3D%20Mock-up/2.png" alt="3D 2" loading="lazy" onerror="this.style.opacity='0.2'"/><div class="card-info"><div class="card-cat">3D Mock-up</div><div class="card-name" data-en="3D Mock-up 2" data-id="3D Mock-up 2">3D Mock-up 2</div></div></div>
-      <div class="card"><img class="card-img-nat" src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/3D%20Mock-up/3.png" alt="3D 3" loading="lazy" onerror="this.style.opacity='0.2'"/><div class="card-info"><div class="card-cat">3D Mock-up</div><div class="card-name" data-en="3D Mock-up 3" data-id="3D Mock-up 3">3D Mock-up 3</div></div></div>
+      <div class="card" onclick="openLightbox('https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/3D%20Mock-up/1.png','3D Mock-up 1','mockup')"><img class="card-img-nat zoomable" src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/3D%20Mock-up/1.png" alt="3D 1" loading="lazy" onerror="this.style.opacity='0.2'"/><div class="card-info"><div class="card-cat">3D Mock-up</div><div class="card-name" data-en="3D Mock-up 1" data-id="3D Mock-up 1">3D Mock-up 1</div></div></div>
+      <div class="card" onclick="openLightbox('https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/3D%20Mock-up/2.png','3D Mock-up 2','mockup')"><img class="card-img-nat zoomable" src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/3D%20Mock-up/2.png" alt="3D 2" loading="lazy" onerror="this.style.opacity='0.2'"/><div class="card-info"><div class="card-cat">3D Mock-up</div><div class="card-name" data-en="3D Mock-up 2" data-id="3D Mock-up 2">3D Mock-up 2</div></div></div>
+      <div class="card" onclick="openLightbox('https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/3D%20Mock-up/3.png','3D Mock-up 3','mockup')"><img class="card-img-nat zoomable" src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/3D%20Mock-up/3.png" alt="3D 3" loading="lazy" onerror="this.style.opacity='0.2'"/><div class="card-info"><div class="card-cat">3D Mock-up</div><div class="card-name" data-en="3D Mock-up 3" data-id="3D Mock-up 3">3D Mock-up 3</div></div></div>
     </div>
   </div>
 </section>
 
-<!-- PENGALAMAN -->
-<section id="pengalaman" class="sec-alt">
+<!-- EXPERIENCE -->
+<section id="pengalaman" class="sec-outer sec-alt">
   <div class="sec-wrap">
-    <div class="sec-title" data-en="Experience" data-id="Riwayat Eksibisi">Experience</div>
-    <div class="sec-sub" data-en="Exhibition History" data-id="Exhibition History">Exhibition History</div>
+    <div class="fade-in">
+      <div class="sec-badge" data-en="Exhibition History" data-id="Exhibition History">Exhibition History</div>
+      <div class="sec-title" data-en="Experience" data-id="Riwayat Eksibisi">Experience</div>
+      <div class="sec-sub" data-en="My Creative Journey" data-id="Perjalanan Kreatif">My Creative Journey</div>
+    </div>
 
     <div class="exp-list">
 
-      <!-- Exp 1 - Video Creator -->
-      <div class="exp-item">
+      <!-- EXP 1: Video Creator (Slider) -->
+      <div class="exp-item fade-in" style="animation-delay:0.05s">
         <div class="exp-date">December 2024 – July 2025</div>
         <div>
           <div class="exp-role" data-en="Creative Staff – Video Creator" data-id="Staf Kreatif – Video Creator">Creative Staff – Video Creator</div>
@@ -422,8 +764,6 @@
              data-id="Bertanggung jawab membuat konten video promosi digital dan media sosial, mulai dari perencanaan, pengambilan gambar, hingga editing. Mahir menggunakan Adobe Premiere Pro, After Effects, dan CapCut untuk menghasilkan video berkualitas dengan grafis, transisi, dan efek suara menarik.">
             Bertanggung jawab membuat konten video promosi digital dan media sosial, mulai dari perencanaan, pengambilan gambar, hingga editing.
           </p>
-
-          <!-- VIDEO SLIDER — multi-card -->
           <div class="vslider-wrap" id="vslider">
             <div class="vslider-row">
               <button class="vslider-arrow" id="vPrevBtn" onclick="vslide(-1)" aria-label="Previous">
@@ -436,12 +776,11 @@
             </div>
             <div class="vslide-dots" id="vsliderDots"></div>
           </div>
-
         </div>
       </div>
 
-      <!-- Exp 2 — DISKOMINFO -->
-      <div class="exp-item">
+      <!-- EXP 2: DISKOMINFO -->
+      <div class="exp-item fade-in" style="animation-delay:0.1s">
         <div class="exp-date">August – October 2023</div>
         <div>
           <div class="exp-role" data-en="Internship – Video Editor" data-id="Internship – Video Editor">Internship – Video Editor</div>
@@ -452,80 +791,88 @@
           <p class="exp-desc exp-id hidden" data-id="Merencanakan, memproduksi, dan mempublikasikan konten visual media sosial resmi. Membuat video pendek informatif (Reels), mendesain layout majalah dan materi grafis, berkolaborasi dengan tim komunikasi.">
             Merencanakan, memproduksi, dan mempublikasikan konten visual media sosial resmi.
           </p>
-          <!-- Row 1: 3 vertical Reels -->
-          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.6rem;margin-top:1rem;">
-            <div style="border-radius:0.6rem;overflow:hidden;aspect-ratio:9/16;background:#e8e8e8;border:1px solid rgba(255,255,255,0.8)">
-              <video controls preload="none" src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/diskominfo/reels%201.mp4" style="width:100%;height:100%;object-fit:cover;display:block"></video>
-            </div>
-            <div style="border-radius:0.6rem;overflow:hidden;aspect-ratio:9/16;background:#e8e8e8;border:1px solid rgba(255,255,255,0.8)">
-              <video controls preload="none" src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/diskominfo/reels%203.mp4" style="width:100%;height:100%;object-fit:cover;display:block"></video>
-            </div>
-            <div style="border-radius:0.6rem;overflow:hidden;aspect-ratio:9/16;background:#e8e8e8;border:1px solid rgba(255,255,255,0.8)">
-              <video controls preload="none" src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/diskominfo/reels%204.mp4" style="width:100%;height:100%;object-fit:cover;display:block"></video>
-            </div>
-          </div>
-          <!-- Row 2: wide horizontal video + 2 book covers -->
-          <div style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:0.6rem;margin-top:0.6rem;">
-            <div style="border-radius:0.6rem;overflow:hidden;aspect-ratio:16/9;background:#e8e8e8;border:1px solid rgba(255,255,255,0.8)">
-              <video controls preload="none" src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/diskominfo/reels%202.mp4" style="width:100%;height:100%;object-fit:cover;display:block"></video>
-            </div>
-            <a href="https://drive.google.com/file/d/1VjbUeB2uJ1IH8z20eksRCjqXa8znO067/view" target="_blank" rel="noopener noreferrer"
-               style="position:relative;display:block;border-radius:0.6rem;overflow:hidden;aspect-ratio:994/1350;background:#222;border:1px solid rgba(255,255,255,0.8);text-decoration:none">
-              <img src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/cover%20buku%201.png" loading="lazy" alt="Cover Buku 1"
-                   style="width:100%;height:100%;object-fit:cover;opacity:0.85" onerror="this.style.opacity='0.2'" />
-              <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.35)">
-                <span style="font-size:0.58rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;border:1px solid rgba(255,255,255,0.35);padding:0.25rem 0.6rem;background:rgba(0,0,0,0.5);color:#fff;border-radius:3px">Open Book</span>
+          <div class="exp-media-grid">
+            <div class="exp-img-row cols-3">
+              <div class="exp-img-cell ratio-9-16 video-cell" onclick="toggleVideoCell(this)">
+                <div class="video-cell-thumb">
+                  <div class="video-cell-thumb-spinner"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="2.5"><circle cx="12" cy="12" r="10" stroke-dasharray="31.4" stroke-dashoffset="10"/></svg></div>
+                  <img class="video-cell-thumb-img" src="" alt="" />
+                  <div class="video-cell-overlay"></div>
+                </div>
+                <div class="video-cell-play"><div class="video-cell-play-btn"><svg viewBox="0 0 16 16"><path d="M4 2l10 6-10 6z"/></svg></div></div>
+                <video preload="none" src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/diskominfo/reels%201.mp4" controls></video>
               </div>
-            </a>
-            <a href="https://drive.google.com/file/d/1W-dQp8Uv_3JVC_qkoTdtiRAISE3zR7HR/view" target="_blank" rel="noopener noreferrer"
-               style="position:relative;display:block;border-radius:0.6rem;overflow:hidden;aspect-ratio:994/1350;background:#222;border:1px solid rgba(255,255,255,0.8);text-decoration:none">
-              <img src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/cover%20buku%202.png" loading="lazy" alt="Cover Buku 2"
-                   style="width:100%;height:100%;object-fit:cover;opacity:0.85" onerror="this.style.opacity='0.2'" />
-              <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.35)">
-                <span style="font-size:0.58rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;border:1px solid rgba(255,255,255,0.35);padding:0.25rem 0.6rem;background:rgba(0,0,0,0.5);color:#fff;border-radius:3px">Open Book</span>
+              <div class="exp-img-cell ratio-9-16 video-cell" onclick="toggleVideoCell(this)">
+                <div class="video-cell-thumb">
+                  <div class="video-cell-thumb-spinner"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="2.5"><circle cx="12" cy="12" r="10" stroke-dasharray="31.4" stroke-dashoffset="10"/></svg></div>
+                  <img class="video-cell-thumb-img" src="" alt="" />
+                  <div class="video-cell-overlay"></div>
+                </div>
+                <div class="video-cell-play"><div class="video-cell-play-btn"><svg viewBox="0 0 16 16"><path d="M4 2l10 6-10 6z"/></svg></div></div>
+                <video preload="none" src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/diskominfo/reels%203.mp4" controls></video>
               </div>
-            </a>
+              <div class="exp-img-cell ratio-9-16 video-cell" onclick="toggleVideoCell(this)">
+                <div class="video-cell-thumb">
+                  <div class="video-cell-thumb-spinner"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="2.5"><circle cx="12" cy="12" r="10" stroke-dasharray="31.4" stroke-dashoffset="10"/></svg></div>
+                  <img class="video-cell-thumb-img" src="" alt="" />
+                  <div class="video-cell-overlay"></div>
+                </div>
+                <div class="video-cell-play"><div class="video-cell-play-btn"><svg viewBox="0 0 16 16"><path d="M4 2l10 6-10 6z"/></svg></div></div>
+                <video preload="none" src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/diskominfo/reels%204.mp4" controls></video>
+              </div>
+            </div>
+            <div class="exp-img-row cols-2-1-1">
+              <div class="exp-img-cell ratio-16-9 video-cell" onclick="toggleVideoCell(this)" style="grid-column:1">
+                <div class="video-cell-thumb">
+                  <div class="video-cell-thumb-spinner"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="2.5"><circle cx="12" cy="12" r="10" stroke-dasharray="31.4" stroke-dashoffset="10"/></svg></div>
+                  <img class="video-cell-thumb-img" src="" alt="" />
+                  <div class="video-cell-overlay"></div>
+                </div>
+                <div class="video-cell-play"><div class="video-cell-play-btn"><svg viewBox="0 0 16 16"><path d="M4 2l10 6-10 6z"/></svg></div></div>
+                <video preload="none" src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/diskominfo/reels%202.mp4" controls style="aspect-ratio:16/9"></video>
+              </div>
+              <a href="https://drive.google.com/file/d/1VjbUeB2uJ1IH8z20eksRCjqXa8znO067/view" target="_blank" rel="noopener noreferrer" class="book-link ratio-book">
+                <img src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/cover%20buku%201.png" loading="lazy" alt="Cover Buku 1" onerror="this.style.opacity='0.2'" />
+                <div class="book-overlay"><span class="book-label">Open Book</span></div>
+              </a>
+              <a href="https://drive.google.com/file/d/1W-dQp8Uv_3JVC_qkoTdtiRAISE3zR7HR/view" target="_blank" rel="noopener noreferrer" class="book-link ratio-book">
+                <img src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/cover%20buku%202.png" loading="lazy" alt="Cover Buku 2" onerror="this.style.opacity='0.2'" />
+                <div class="book-overlay"><span class="book-label">Open Book</span></div>
+              </a>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- Exp 3 — Ramoti -->
-      <div class="exp-item">
+      <!-- EXP 3: Ramoti -->
+      <div class="exp-item fade-in" style="animation-delay:0.15s">
         <div class="exp-date">January – April 2020</div>
         <div>
           <div class="exp-role" data-en="Creative Staff – Graphic Design" data-id="Staf Kreatif – Graphic Design">Creative Staff – Graphic Design</div>
           <div class="exp-company">PT Ramoti Indonesia – Kota Bogor</div>
-          <p class="exp-desc exp-en" data-en="Designed 100+ Instagram feed & story visual contents according to brand identity. Created digital promotional materials including banners, posters, and infographics. Collaborated with marketing teams for visual campaigns.">
-            Designed 100+ Instagram feed & story visual contents according to brand identity. Created digital promotional materials including banners, posters, and infographics.
+          <p class="exp-desc exp-en" data-en="Designed 100+ Instagram feed &amp; story visual contents according to brand identity. Created digital promotional materials including banners, posters, and infographics. Collaborated with marketing teams for visual campaigns.">
+            Designed 100+ Instagram feed &amp; story visual contents according to brand identity. Created digital promotional materials including banners, posters, and infographics.
           </p>
-          <p class="exp-desc exp-id hidden" data-id="Mendesain 100+ konten visual Instagram feed & story sesuai identitas merek, serta materi promosi digital seperti banner, poster, dan infografis. Berkolaborasi dengan tim pemasaran untuk kampanye visual.">
-            Mendesain 100+ konten visual Instagram feed & story sesuai identitas merek.
+          <p class="exp-desc exp-id hidden" data-id="Mendesain 100+ konten visual Instagram feed &amp; story sesuai identitas merek, serta materi promosi digital seperti banner, poster, dan infografis. Berkolaborasi dengan tim pemasaran untuk kampanye visual.">
+            Mendesain 100+ konten visual Instagram feed &amp; story sesuai identitas merek.
           </p>
-          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.6rem;margin-top:1rem;">
-            <div style="border-radius:0.6rem;overflow:hidden;aspect-ratio:9/16;background:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.8)">
-              <img src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/ramoti/sg%201.png" alt="SG 1" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block" onerror="this.style.opacity='0.15'" />
+          <div class="exp-media-grid">
+            <div class="exp-img-row cols-3">
+              <div class="exp-img-cell ratio-9-16" onclick="openLightbox('https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/ramoti/sg%201.png','Story 1','ramoti')"><img class="zoomable" src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/ramoti/sg%201.png" alt="SG 1" loading="lazy" onerror="this.style.opacity='0.15'" /></div>
+              <div class="exp-img-cell ratio-9-16" onclick="openLightbox('https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/ramoti/sg%202.png','Story 2','ramoti')"><img class="zoomable" src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/ramoti/sg%202.png" alt="SG 2" loading="lazy" onerror="this.style.opacity='0.15'" /></div>
+              <div class="exp-img-cell ratio-9-16" onclick="openLightbox('https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/ramoti/sg%203.png','Story 3','ramoti')"><img class="zoomable" src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/ramoti/sg%203.png" alt="SG 3" loading="lazy" onerror="this.style.opacity='0.15'" /></div>
             </div>
-            <div style="border-radius:0.6rem;overflow:hidden;aspect-ratio:9/16;background:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.8)">
-              <img src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/ramoti/sg%202.png" alt="SG 2" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block" onerror="this.style.opacity='0.15'" />
-            </div>
-            <div style="border-radius:0.6rem;overflow:hidden;aspect-ratio:9/16;background:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.8)">
-              <img src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/ramoti/sg%203.png" alt="SG 3" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block" onerror="this.style.opacity='0.15'" />
-            </div>
-            <div style="border-radius:0.6rem;overflow:hidden;aspect-ratio:1/1;background:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.8)">
-              <img src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/ramoti/ps%201.png" alt="PS 1" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block" onerror="this.style.opacity='0.15'" />
-            </div>
-            <div style="border-radius:0.6rem;overflow:hidden;aspect-ratio:1/1;background:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.8)">
-              <img src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/ramoti/ps%202.png" alt="PS 2" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block" onerror="this.style.opacity='0.15'" />
-            </div>
-            <div style="border-radius:0.6rem;overflow:hidden;aspect-ratio:1/1;background:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.8)">
-              <img src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/ramoti/ps%203.png" alt="PS 3" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block" onerror="this.style.opacity='0.15'" />
+            <div class="exp-img-row cols-3">
+              <div class="exp-img-cell ratio-1-1" onclick="openLightbox('https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/ramoti/ps%201.png','Post 1','ramoti')"><img class="zoomable" src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/ramoti/ps%201.png" alt="PS 1" loading="lazy" onerror="this.style.opacity='0.15'" /></div>
+              <div class="exp-img-cell ratio-1-1" onclick="openLightbox('https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/ramoti/ps%202.png','Post 2','ramoti')"><img class="zoomable" src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/ramoti/ps%202.png" alt="PS 2" loading="lazy" onerror="this.style.opacity='0.15'" /></div>
+              <div class="exp-img-cell ratio-1-1" onclick="openLightbox('https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/ramoti/ps%203.png','Post 3','ramoti')"><img class="zoomable" src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/ramoti/ps%203.png" alt="PS 3" loading="lazy" onerror="this.style.opacity='0.15'" /></div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Exp 4 — Kumata -->
-      <div class="exp-item">
+      <!-- EXP 4: Kumata -->
+      <div class="exp-item fade-in" style="animation-delay:0.2s">
         <div class="exp-date">February – April 2018</div>
         <div>
           <div class="exp-role" data-en="Internship – Animator" data-id="Internship – Animator">Internship – Animator</div>
@@ -536,20 +883,13 @@
           <p class="exp-desc exp-id hidden" data-id="Bertugas membuat keyframe dan tweening animasi karakter serta objek sesuai storyboard untuk 45+ scene dalam produksi film animasi T-JTown (NET TV). Menggunakan Toon Boom Harmony.">
             Bertugas membuat keyframe dan tweening animasi karakter untuk 45+ scene dalam produksi <b>T-JTown (NET TV)</b>.
           </p>
-          <!-- Video full-width -->
-          <div style="border-radius:0.85rem;overflow:hidden;aspect-ratio:16/9;background:#111;border:1px solid rgba(0,0,0,0.1);margin-top:1rem;">
-            <iframe src="https://drive.google.com/file/d/1LylFhawmS2kH_tfx9GZ61BPwOcZY-tNc/preview"
-                    style="width:100%;height:100%;border:none;display:block" allow="autoplay" title="Kumata Animation"></iframe>
-          </div>
-          <!-- Thumbnails below -->
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.6rem;margin-top:0.6rem;">
-            <div style="border-radius:0.85rem;overflow:hidden;aspect-ratio:16/9;background:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.8)">
-              <img src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/kumata/1.png" alt="Kumata 1" loading="lazy"
-                   style="width:100%;height:100%;object-fit:cover;display:block" onerror="this.style.opacity='0.15'" />
+          <div class="exp-media-grid">
+            <div class="iframe-embed" style="aspect-ratio:16/9">
+              <iframe src="https://drive.google.com/file/d/1LylFhawmS2kH_tfx9GZ61BPwOcZY-tNc/preview" allow="autoplay" title="Kumata Animation"></iframe>
             </div>
-            <div style="border-radius:0.85rem;overflow:hidden;aspect-ratio:16/9;background:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.8)">
-              <img src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/kumata/2.png" alt="Kumata 2" loading="lazy"
-                   style="width:100%;height:100%;object-fit:cover;display:block" onerror="this.style.opacity='0.15'" />
+            <div class="exp-img-row cols-2">
+              <div class="exp-img-cell ratio-16-9" onclick="openLightbox('https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/kumata/1.png','T-JTown Scene 1','kumata')"><img class="zoomable" src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/kumata/1.png" alt="Kumata 1" loading="lazy" onerror="this.style.opacity='0.15'" /></div>
+              <div class="exp-img-cell ratio-16-9" onclick="openLightbox('https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/kumata/2.png','T-JTown Scene 2','kumata')"><img class="zoomable" src="https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/kumata/2.png" alt="Kumata 2" loading="lazy" onerror="this.style.opacity='0.15'" /></div>
             </div>
           </div>
         </div>
@@ -559,42 +899,36 @@
   </div>
 </section>
 
-<!-- KONTAK -->
-<section id="kontak">
+<!-- CONTACT -->
+<section id="kontak" class="sec-outer">
   <div class="sec-wrap">
-    <div class="contact-layout" style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;">
-
-      <!-- Kiri: heading -->
-      <div>
+    <div class="contact-layout">
+      <div class="fade-in">
+        <div class="sec-badge" data-en="Let's Collaborate" data-id="Mari Berkolaborasi">Let's Collaborate</div>
         <div class="sec-title" data-en="Contact" data-id="Kontak">Contact</div>
-        <div class="sec-sub" data-en="Let's Collaborate" data-id="Mari Berkolaborasi">Let's Collaborate</div>
-        <p style="font-size:0.9rem;color:#666;line-height:1.9;max-width:380px;"
+        <div class="sec-sub" data-en="Get in Touch" data-id="Hubungi Saya">Get in Touch</div>
+        <p style="font-size:0.88rem;color:var(--text-secondary);line-height:1.9;max-width:360px;"
            data-en="Open to collaboration opportunities, freelance projects, or simply discussing the world of visual arts and design. Don't hesitate to reach out!"
            data-id="Terbuka untuk peluang kerja sama, proyek freelance, atau sekadar berdiskusi mengenai dunia visual dan desain. Jangan ragu untuk menghubungi!">
           Open to collaboration opportunities, freelance projects, or simply discussing the world of visual arts and design. Don't hesitate to reach out!
         </p>
       </div>
-
-      <!-- Kanan: contact card -->
-      <div style="background:rgba(255,255,255,0.65);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.9);border-radius:1.2rem;box-shadow:0 4px 32px rgba(0,0,0,0.09);padding:2rem;">
-        <div class="cinfo-title" data-en="Get in Touch" data-id="Hubungi Saya">Get in Touch</div>
+      <div class="glass-strong fade-in" style="animation-delay:0.1s; border-radius:1.5rem; padding:2rem;">
+        <div class="cinfo-title" data-en="Reach Me At" data-id="Hubungi Saya Di">Reach Me At</div>
         <p class="cinfo-desc"
-           data-en="Open to collaboration opportunities, freelance projects, or simply discussing the world of visual arts and design. Don't hesitate to reach out!"
-           data-id="Terbuka untuk peluang kerja sama, proyek freelance, atau sekadar berdiskusi mengenai dunia visual dan desain. Jangan ragu untuk menghubungi!">
-          Open to collaboration opportunities, freelance projects, or simply discussing the world of visual arts and design. Don't hesitate to reach out!
+           data-en="Always happy to connect — whether it's a quick question or a big project idea."
+           data-id="Senang untuk terhubung — baik pertanyaan singkat atau ide proyek besar.">
+          Always happy to connect — whether it's a quick question or a big project idea.
         </p>
-
-        <a href="mailto:Zakidodi10@gmail.com" class="citem" style="text-decoration:none;display:flex;align-items:center;gap:0.9rem;margin-bottom:1.1rem;cursor:pointer;">
+        <a href="mailto:Zakidodi10@gmail.com" class="citem">
           <div class="cicon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
           <div><div class="clabel">Email</div><div class="cval">Zakidodi10@gmail.com</div></div>
         </a>
-
-        <a href="https://instagram.com/muhzakymah.id" target="_blank" rel="noopener noreferrer" class="citem" style="text-decoration:none;display:flex;align-items:center;gap:0.9rem;margin-bottom:1.1rem;cursor:pointer;">
+        <a href="https://instagram.com/muhzakymah.id" target="_blank" rel="noopener noreferrer" class="citem">
           <div class="cicon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></div>
           <div><div class="clabel">Instagram</div><div class="cval">@muhzakymah.id</div></div>
         </a>
-
-        <a href="https://wa.me/6289687419589" target="_blank" rel="noopener noreferrer" class="citem" style="text-decoration:none;display:flex;align-items:center;gap:0.9rem;margin-bottom:0;cursor:pointer;">
+        <a href="https://wa.me/6289687419589" target="_blank" rel="noopener noreferrer" class="citem" style="margin-bottom:0">
           <div class="cicon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.13.97.36 1.92.7 2.84a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6.08 6.08l.96-.96a2 2 0 0 1 2.11-.45c.92.34 1.87.57 2.84.7a2 2 0 0 1 1.72 2.02z"/></svg></div>
           <div><div class="clabel">WhatsApp</div><div class="cval">089687419589</div></div>
         </a>
@@ -605,21 +939,41 @@
 
 <!-- FOOTER -->
 <footer>
-  <p>&copy; 2025 <span>M Zaky Mahid Ruwansyah</span> — Visual Alchemist • 3D Artist • Animator</p>
+  <p>&copy; 2025 <span>M Zaky Mahid Ruwansyah</span> &mdash; Visual Alchemist &bull; 3D Artist &bull; Animator</p>
 </footer>
 
+<!-- LIGHTBOX MODAL -->
+<div class="lightbox-overlay" id="lightboxOverlay" onclick="closeLightboxOnBg(event)">
+  <div class="lightbox-inner" id="lightboxInner">
+    <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close">&times;</button>
+    <button class="lb-nav lb-prev" onclick="lbNav(-1)" aria-label="Previous">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <img class="lightbox-img" id="lightboxImg" src="" alt="" />
+    <button class="lb-nav lb-next" onclick="lbNav(1)" aria-label="Next">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+    <div class="lb-caption" id="lightboxCaption"></div>
+  </div>
+</div>
+
+</div><!-- /content-layer -->
+
 <script>
-/* ── VIDEO DATA ── */
+/* ══════════════════════════════════════
+   VIDEO DATA
+══════════════════════════════════════ */
 const VIDEOS = [
   { src: "https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/Nussa%20parts/Video%201.mp4", views: "1.7M", likes: "47.4K", comments: "668" },
   { src: "https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/Nussa%20parts/Video%202.mp4", views: "213.6K", likes: "4.2K", comments: "512" },
   { src: "https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/Nussa%20parts/Video%203.mp4", views: "206.6K", likes: "8.9K", comments: "1009" },
   { src: "https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/Nussa%20parts/Video%204.mp4", views: "328.5K", likes: "17.8K", comments: "143" },
   { src: "https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/Nussa%20parts/video%205.mp4", views: "149.6K", likes: "3.1K", comments: "348" },
-  { src: "https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/Nussa%20parts/video%206.mp4", views: "96.6K", likes: "1.5K", comments: "210" },
+  { src: "https://raw.githubusercontent.com/datazaki25-web/my-portfolio/main/assets/images/Nussa%20parts/video%206.mp4", views: "96.6K", likes: "1.5K", comments: "210" }
 ];
 
 let vStartIdx = 0;
+const activeSliderVideos = new Set();
 
 function getVisibleCount() {
   const w = window.innerWidth;
@@ -628,56 +982,116 @@ function getVisibleCount() {
   return 3;
 }
 
+function generateThumbnail(videoSrc, callback) {
+  const v = document.createElement('video');
+  v.crossOrigin = 'anonymous';
+  v.preload = 'metadata';
+  v.muted = true;
+  v.src = videoSrc;
+  v.addEventListener('loadedmetadata', () => {
+    v.currentTime = Math.min(0.5, v.duration * 0.1);
+  });
+  v.addEventListener('seeked', () => {
+    try {
+      const canvas = document.createElement('canvas');
+      canvas.width = v.videoWidth || 360;
+      canvas.height = v.videoHeight || 640;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(v, 0, 0, canvas.width, canvas.height);
+      callback(canvas.toDataURL('image/jpeg', 0.85));
+    } catch(e) { callback(null); }
+  });
+  v.addEventListener('error', () => callback(null));
+  v.load();
+}
+
+function stopAllSliderVideos() {
+  document.querySelectorAll('#vsliderGrid video').forEach(v => {
+    v.pause(); v.currentTime = 0;
+  });
+  document.querySelectorAll('#vsliderGrid .vslide-card').forEach(c => {
+    c.classList.remove('playing');
+  });
+  activeSliderVideos.clear();
+}
+
 function renderVideoSlider() {
+  stopAllSliderVideos();
   const vc = getVisibleCount();
   const maxStart = VIDEOS.length - vc;
   const grid = document.getElementById('vsliderGrid');
   const dots = document.getElementById('vsliderDots');
   const prevBtn = document.getElementById('vPrevBtn');
   const nextBtn = document.getElementById('vNextBtn');
-
   if (!grid) return;
-
   grid.style.gridTemplateColumns = `repeat(${vc}, 1fr)`;
-
-  // Render video cards
   grid.innerHTML = '';
+
   for (let i = vStartIdx; i < vStartIdx + vc; i++) {
     const v = VIDEOS[i];
     const card = document.createElement('div');
     card.className = 'vslide-card';
+    card.dataset.idx = i;
     card.innerHTML = `
-      <video controls preload="none" src="${v.src}"></video>
+      <div class="vslide-thumb" id="thumb-${i}">
+        <div style="position:absolute;inset:0;background:linear-gradient(135deg,#1a1a2e,#16213e);display:flex;align-items:center;justify-content:center;">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="20" fill="rgba(255,255,255,0.06)"/><path d="M16 12l12 8-12 8z" fill="rgba(255,255,255,0.4)"/></svg>
+        </div>
+        <img src="" alt="Video thumbnail" id="thumb-img-${i}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 0.4s;" />
+        <div class="vslide-thumb-gradient"></div>
+      </div>
+      <div class="vslide-play-btn">
+        <div class="vslide-play-icon">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+      </div>
+      <video preload="none" src="${v.src}" controls></video>
       <div class="vslide-stats">
         <span class="vslide-stat">
-          <svg width="12" height="12" fill="currentColor" viewBox="0 0 16 16"><path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8z"/><path d="M8 5a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
           ${v.views}
         </span>
         <span class="vslide-stat">
-          <svg width="12" height="12" fill="currentColor" viewBox="0 0 16 16"><path d="M8 14s6-4.35 6-8.28A3.72 3.72 0 0 0 10.28 2c-1.2 0-2.4.6-3.28 1.58C6.12 2.6 4.92 2 3.72 2A3.72 3.72 0 0 0 0 5.72C0 9.65 8 14 8 14z"/></svg>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           ${v.likes}
         </span>
         <span class="vslide-stat">
-          <svg width="12" height="12" fill="currentColor" viewBox="0 0 16 16"><path d="M8 1c-4.4 0-8 2.9-8 6.5 0 2.1 1.3 4 3.4 5.2-.1.9-.6 2.1-1.6 3.1 0 0 3-.2 5-1.6.4.1.8.1 1.2.1 4.4 0 8-2.9 8-6.5S12.4 1 8 1z"/></svg>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
           ${v.comments}
         </span>
       </div>
     `;
+    card.addEventListener('click', function(e) {
+      if (e.target.closest('video')) return;
+      const videoEl = card.querySelector('video');
+      if (!card.classList.contains('playing')) {
+        card.classList.add('playing');
+        videoEl.play();
+      }
+    });
     grid.appendChild(card);
+    (function(idx) {
+      generateThumbnail(VIDEOS[idx].src, function(dataUrl) {
+        if (!dataUrl) return;
+        const thumbEl = document.getElementById('thumb-img-' + idx);
+        if (thumbEl) {
+          thumbEl.src = dataUrl;
+          thumbEl.style.opacity = '1';
+          const bg = thumbEl.closest('.vslide-thumb').querySelector('div');
+          if (bg) bg.style.opacity = '0';
+        }
+      });
+    })(i);
   }
 
-  // Render dots
   dots.innerHTML = '';
-  const totalPages = maxStart + 1;
   for (let i = 0; i <= maxStart; i++) {
     const dot = document.createElement('button');
     dot.className = 'vslide-dot' + (i === vStartIdx ? ' on' : '');
-    dot.setAttribute('aria-label', `Slide ${i + 1}`);
+    dot.setAttribute('aria-label', 'Slide ' + (i + 1));
     dot.onclick = () => { vStartIdx = i; renderVideoSlider(); };
     dots.appendChild(dot);
   }
-
-  // Arrow states
   prevBtn.disabled = vStartIdx === 0;
   nextBtn.disabled = vStartIdx >= maxStart;
 }
@@ -689,7 +1103,127 @@ function vslide(dir) {
   renderVideoSlider();
 }
 
-/* ── MOBILE MENU ── */
+function toggleVideoCell(cell) {
+  const video = cell.querySelector('video');
+  if (!video) return;
+  if (!cell.classList.contains('playing')) {
+    cell.classList.add('playing');
+    video.play();
+  }
+}
+
+function initVideoCellThumbnails() {
+  document.querySelectorAll('.video-cell').forEach(cell => {
+    const video = cell.querySelector('video');
+    const thumbImg = cell.querySelector('.video-cell-thumb-img');
+    const spinner = cell.querySelector('.video-cell-thumb-spinner');
+    if (!video || !thumbImg) return;
+    const src = video.getAttribute('src');
+    if (!src) return;
+    generateThumbnail(src, function(dataUrl) {
+      if (!dataUrl) { if (spinner) spinner.style.display = 'none'; return; }
+      thumbImg.src = dataUrl;
+      thumbImg.classList.add('loaded');
+      if (spinner) spinner.style.opacity = '0';
+    });
+  });
+}
+
+/* ══════════════════════════════════════
+   LIGHTBOX
+══════════════════════════════════════ */
+let lbImages = [], lbCurrentIdx = 0;
+
+function openLightbox(src, caption, group) {
+  lbImages = []; lbCurrentIdx = 0;
+  if (group) {
+    const groupEls = document.querySelectorAll(`[onclick*="'${group}'"]`);
+    groupEls.forEach((el) => {
+      const oc = el.getAttribute('onclick') || '';
+      const match = oc.match(/openLightbox\('([^']+)','([^']*)','([^']+)'\)/);
+      if (match && match[3] === group) {
+        if (match[1] === src) lbCurrentIdx = lbImages.length;
+        lbImages.push({ src: match[1], caption: match[2] });
+      }
+    });
+  }
+  if (lbImages.length === 0) { lbImages = [{ src, caption: caption || '' }]; lbCurrentIdx = 0; }
+  showLightboxImage(lbCurrentIdx);
+  document.getElementById('lightboxOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  updateLbNavVisibility();
+}
+
+function showLightboxImage(idx) {
+  const item = lbImages[idx];
+  if (!item) return;
+  document.getElementById('lightboxImg').src = item.src;
+  document.getElementById('lightboxCaption').textContent = item.caption || '';
+  lbCurrentIdx = idx;
+  updateLbNavVisibility();
+}
+
+function updateLbNavVisibility() {
+  const prev = document.querySelector('.lb-prev');
+  const next = document.querySelector('.lb-next');
+  if (!prev || !next) return;
+  prev.style.opacity = lbCurrentIdx > 0 ? '1' : '0.25';
+  prev.style.pointerEvents = lbCurrentIdx > 0 ? 'all' : 'none';
+  next.style.opacity = lbCurrentIdx < lbImages.length - 1 ? '1' : '0.25';
+  next.style.pointerEvents = lbCurrentIdx < lbImages.length - 1 ? 'all' : 'none';
+}
+
+function lbNav(dir) {
+  const newIdx = lbCurrentIdx + dir;
+  if (newIdx >= 0 && newIdx < lbImages.length) showLightboxImage(newIdx);
+}
+
+function closeLightbox() {
+  document.getElementById('lightboxOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+  setTimeout(() => { document.getElementById('lightboxImg').src = ''; }, 300);
+}
+
+function closeLightboxOnBg(e) {
+  if (e.target === document.getElementById('lightboxOverlay')) closeLightbox();
+}
+
+document.addEventListener('keydown', function(e) {
+  const overlay = document.getElementById('lightboxOverlay');
+  if (!overlay.classList.contains('open')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') lbNav(-1);
+  if (e.key === 'ArrowRight') lbNav(1);
+});
+
+/* ══════════════════════════════════════
+   DARK / LIGHT THEME
+══════════════════════════════════════ */
+function toggleTheme() {
+  const html = document.documentElement;
+  const isDark = html.getAttribute('data-theme') === 'dark';
+  const next = isDark ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  localStorage.setItem('theme', next);
+  updateThemeIcon(next);
+}
+function updateThemeIcon(theme) {
+  const sun  = document.getElementById('themeIconSun');
+  const moon = document.getElementById('themeIconMoon');
+  if (!sun || !moon) return;
+  if (theme === 'dark') { sun.style.display = 'none'; moon.style.display = ''; }
+  else                  { sun.style.display = '';     moon.style.display = 'none'; }
+}
+(function() {
+  const saved = localStorage.getItem('theme');
+  const initial = saved === 'dark' ? 'dark' : 'light';
+  document.documentElement.setAttribute('data-theme', initial);
+  document.addEventListener('DOMContentLoaded', () => updateThemeIcon(initial));
+})();
+
+/* ══════════════════════════════════════
+   MOBILE MENU
+══════════════════════════════════════ */
 let menuOpen = false;
 function toggleMenu() {
   menuOpen = !menuOpen;
@@ -700,7 +1234,9 @@ function closeMenu() {
   document.getElementById('mobileMenu').classList.remove('open');
 }
 
-/* ── LANGUAGE ── */
+/* ══════════════════════════════════════
+   LANGUAGE
+══════════════════════════════════════ */
 let currentLang = 'en';
 function setLang(lang) {
   currentLang = lang;
@@ -718,7 +1254,9 @@ function setLang(lang) {
   });
 }
 
-/* ── TABS ── */
+/* ══════════════════════════════════════
+   TABS
+══════════════════════════════════════ */
 function switchTab(id, btn) {
   ['logo','gambar','mockup'].forEach(t => {
     document.getElementById('tab-' + t).classList.toggle('hidden', t !== id);
@@ -727,7 +1265,9 @@ function switchTab(id, btn) {
   btn.classList.add('on');
 }
 
-/* ── SCROLL ACTIVE NAV ── */
+/* ══════════════════════════════════════
+   SCROLL ACTIVE NAV
+══════════════════════════════════════ */
 const sections = ['beranda','tentang','karya','pengalaman','kontak'];
 window.addEventListener('scroll', () => {
   let current = 'beranda';
@@ -740,16 +1280,34 @@ window.addEventListener('scroll', () => {
   });
 }, { passive: true });
 
-/* ── RESIZE ── */
+/* ══════════════════════════════════════
+   SCROLL FADE-IN OBSERVER
+══════════════════════════════════════ */
+const fadeObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      fadeObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.fade-in').forEach(el => fadeObserver.observe(el));
+
+/* ══════════════════════════════════════
+   RESIZE
+══════════════════════════════════════ */
 let resizeTimer;
 window.addEventListener('resize', () => {
   clearTimeout(resizeTimer);
   resizeTimer = setTimeout(renderVideoSlider, 150);
-});
+}, { passive: true });
 
-/* ── INIT ── */
+/* ══════════════════════════════════════
+   INIT
+══════════════════════════════════════ */
 setLang('en');
 renderVideoSlider();
+setTimeout(initVideoCellThumbnails, 500);
 </script>
 </body>
 </html>
