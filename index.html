@@ -684,15 +684,29 @@
     .vslide-card.playing .vslide-play-btn { opacity: 0; pointer-events: none; }
     .vslide-stats {
       position: absolute; bottom: 0; left: 0; right: 0;
-      background: linear-gradient(transparent, rgba(0,0,0,0.8));
-      padding: 2.5rem 0.85rem 0.9rem;
+      background: linear-gradient(transparent 0%, rgba(0,0,0,0.55) 40%, rgba(0,0,0,0.95) 100%);
+      padding: 3rem 0.85rem 1rem;
       display: flex; justify-content: space-around; align-items: center;
       pointer-events: none; z-index: 3;
     }
-    .vslide-stat {
-      display: flex; align-items: center; gap: 4px;
-      color: #fff; font-size: 0.68rem; font-weight: 600;
+    .vslide-stat,
+    .vslide-stat * {
+      color: #ffffff !important;
     }
+    .vslide-stat {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 0.82rem; font-weight: 700;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.95), 0 0 8px rgba(0,0,0,0.7);
+      letter-spacing: 0.2px;
+      line-height: 1;
+    }
+    .vslide-stat svg {
+      width: 16px; height: 16px;
+      stroke: #ffffff !important; fill: currentColor;
+      filter: drop-shadow(0 1px 3px rgba(0,0,0,0.9));
+      flex-shrink: 0;
+    }
+    .vslide-stat svg[fill="none"] { fill: none; }
     .vslide-dots {
       display: flex; justify-content: center; gap: 0.45rem; margin-top: 1rem;
     }
@@ -924,32 +938,110 @@
     }
     .iframe-embed iframe { width: 100%; height: 100%; border: none; display: block; }
 
+    /* ── DARK GRADIENT DIVIDER (between Hero and About) ── */
+    .dark-gradient-divider {
+      position: relative;
+      width: 100%;
+      height: 180px;
+      background:
+        radial-gradient(ellipse 60% 100% at 50% 50%, rgba(212,175,55,0.06), transparent 70%),
+        linear-gradient(180deg,
+          #2a0808 0%,
+          #1a0404 22%,
+          #0a0202 50%,
+          #1a0404 78%,
+          #2a0808 100%);
+      box-shadow:
+        inset 0 12px 28px rgba(0,0,0,0.7),
+        inset 0 -12px 28px rgba(0,0,0,0.7);
+      pointer-events: none;
+    }
+    .dark-gradient-divider::before {
+      content: '';
+      position: absolute; left: 50%; top: 50%;
+      transform: translate(-50%, -50%);
+      width: 70%; max-width: 720px; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(245,217,122,0.55) 20%, rgba(245,217,122,0.85) 50%, rgba(245,217,122,0.55) 80%, transparent);
+      box-shadow: 0 0 18px rgba(245,217,122,0.35);
+    }
+    .dark-gradient-divider::after {
+      content: '';
+      position: absolute; left: 50%; top: 50%;
+      transform: translate(-50%, -50%);
+      width: 12px; height: 12px;
+      background: radial-gradient(circle, #f5d97a 0%, #d4af37 50%, transparent 75%);
+      border-radius: 50%;
+      box-shadow: 0 0 24px 4px rgba(245,217,122,0.55);
+    }
+    @media (max-width: 768px) {
+      .dark-gradient-divider { height: 120px; }
+    }
+
     /* ── FADE IN ── */
     .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
     .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-    /* ── MOBILE ── */
+    /* ── RESPONSIVE: TABLET / SMALL LAPTOP ── */
+    @media (max-width: 1024px) {
+      .sec-wrap { padding: 5rem 2rem; }
+      .hero-name { font-size: clamp(2.2rem, 6vw, 3.4rem); }
+      .contact-layout { gap: 2.5rem; }
+    }
+
+    /* ── RESPONSIVE: TABLET / LARGE PHONE ── */
     @media (max-width: 768px) {
-      nav { padding: 0.75rem 1.25rem; }
+      nav { padding: 0.75rem 1.1rem; }
       .nav-links { display: none; }
       .hamburger-btn { display: flex; align-items: center; }
-      .hero { padding: 6.5rem 1.25rem 3.5rem; }
+      .hero { padding: 6.5rem 1.25rem 3.5rem; min-height: auto; }
       .hero-inner { flex-direction: column-reverse; gap: 2rem; text-align: center; }
-      .hero-photo { width: 190px; height: 225px; align-self: center; }
-      .hero-cta { justify-content: center; }
-      .hero-bio { margin-left: auto; margin-right: auto; }
+      .hero-photo { width: 200px; height: 240px; align-self: center; }
+      .hero-name { font-size: clamp(2rem, 8vw, 2.8rem); line-height: 1.1; }
+      .hero-roles { font-size: 0.7rem; letter-spacing: 2px; }
+      .hero-bio { margin-left: auto; margin-right: auto; font-size: 0.95rem; }
+      .hero-cta { justify-content: center; flex-wrap: wrap; gap: 0.6rem; }
       .hero-socials { justify-content: center; }
+      .museum-lamp { display: none; }
       .sec-wrap { padding: 4rem 1.25rem; }
-      .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
-      .grid-3 { grid-template-columns: repeat(2, 1fr); }
+      .sec-title { font-size: clamp(1.8rem, 7vw, 2.4rem); }
+      .exp-item { grid-template-columns: 1fr; gap: 0.6rem; }
+      .exp-date { font-size: 0.7rem; }
+      .grid-3 { grid-template-columns: repeat(2, 1fr); gap: 0.85rem; }
       .grid-2 { grid-template-columns: 1fr; }
       .exp-img-row.cols-3 { grid-template-columns: repeat(2,1fr); }
       .contact-layout { grid-template-columns: 1fr; gap: 2rem; }
       .exp-img-row.cols-2-1-1 { grid-template-columns: 1fr 1fr; }
+      .vslider-arrow { width: 36px; height: 36px; }
+      .vslide-stat { font-size: 0.72rem; gap: 4px; }
+      .vslide-stat svg { width: 14px; height: 14px; }
+      .lb-prev { left: 8px; }
+      .lb-next { right: 8px; }
+      .dark-gradient-divider { height: 110px; }
     }
+
+    /* ── RESPONSIVE: SMALL PHONE ── */
     @media (max-width: 480px) {
+      nav { padding: 0.65rem 0.9rem; }
+      .nav-logo { font-size: 1.2rem; }
+      .hero { padding: 5.5rem 1rem 2.5rem; }
+      .hero-photo { width: 170px; height: 200px; }
+      .hero-cta .btn { padding: 0.7rem 1.2rem; font-size: 0.7rem; }
+      .sec-wrap { padding: 3rem 1rem; }
+      .sec-badge { font-size: 0.6rem; padding: 0.4rem 0.9rem; }
       .grid-3 { grid-template-columns: 1fr; }
-      .exp-img-row.cols-3 { grid-template-columns: 1fr 1fr; }
+      .exp-img-row.cols-3 { grid-template-columns: 1fr 1fr; gap: 0.4rem; }
+      .exp-img-row.cols-2-1-1 { grid-template-columns: 1fr; }
+      .vslide-stats { padding: 2.2rem 0.55rem 0.7rem; }
+      .vslide-stat { font-size: 0.68rem; }
+      .vslide-stat svg { width: 12px; height: 12px; }
+      .vslider-arrow { width: 32px; height: 32px; }
+      .citem { padding: 0.75rem 0.9rem; }
+      .clabel { font-size: 0.55rem; letter-spacing: 1.5px; }
+      .cval { font-size: 0.85rem; word-break: break-word; }
+      .cinfo-title { font-size: 1.25rem; }
+      .dark-gradient-divider { height: 80px; }
+      footer { padding: 1.6rem 1rem; }
+      footer p { font-size: 0.6rem; letter-spacing: 1.5px; }
     }
   </style>
 </head>
@@ -960,7 +1052,7 @@
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo">Zaky</span></div>
+  <div class="nav-logo"><span>Zaky</span></div>
   <div class="nav-right">
     <ul class="nav-links" id="navLinks">
       <li><a href="#beranda" class="nav-link" data-en="Home" data-id="Beranda">Home</a></li>
@@ -1034,11 +1126,13 @@
              alt="M Zaky Mahid Ruwansyah"
              onerror="this.src='https://ui-avatars.com/api/?name=MZ&size=330&background=2a0808&color=d4af37&bold=true&length=2'" />
       </div>
-      <div class="museum-plaque">M. Zaky Mahid R.</div>
     </div>
   </div>
   <div class="museum-panel"></div>
 </section>
+
+<!-- DARK GRADIENT TRANSITION -->
+<div class="dark-gradient-divider" aria-hidden="true"></div>
 
 <!-- ABOUT -->
 <section id="tentang" class="sec-outer sec-alt">
@@ -1057,6 +1151,9 @@
     </div>
   </div>
 </section>
+
+<!-- DARK GRADIENT TRANSITION : About → Works -->
+<div class="dark-gradient-divider" aria-hidden="true"></div>
 
 <!-- WORKS -->
 <section id="karya" class="sec-outer">
@@ -1093,6 +1190,9 @@
     </div>
   </div>
 </section>
+
+<!-- DARK GRADIENT TRANSITION : Works → Experience -->
+<div class="dark-gradient-divider" aria-hidden="true"></div>
 
 <!-- EXPERIENCE -->
 <section id="pengalaman" class="sec-outer sec-alt">
@@ -1254,6 +1354,9 @@
   </div>
 </section>
 
+<!-- DARK GRADIENT TRANSITION : Experience → Contact -->
+<div class="dark-gradient-divider" aria-hidden="true"></div>
+
 <!-- CONTACT -->
 <section id="kontak" class="sec-outer">
   <div class="sec-wrap">
@@ -1291,6 +1394,9 @@
     </div>
   </div>
 </section>
+
+<!-- DARK GRADIENT TRANSITION : Contact → Footer -->
+<div class="dark-gradient-divider" aria-hidden="true"></div>
 
 <!-- FOOTER -->
 <footer>
