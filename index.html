@@ -6,7 +6,7 @@
   <title>M Zaky Mahid Ruwansyah — Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Cinzel:wght@400;600;700;900&display=swap" rel="stylesheet" />
   <style>
     :root {
       --bg: #e5dfde;
@@ -84,59 +84,65 @@
       position: fixed; top: 0; left: 0; right: 0; z-index: 999;
       display: flex; align-items: center; justify-content: space-between;
       padding: 0.85rem 2.5rem;
-      background: rgba(255,255,255,0.60);
-      backdrop-filter: blur(40px) saturate(200%) brightness(1.14);
-      -webkit-backdrop-filter: blur(40px) saturate(200%) brightness(1.14);
-      border-bottom: 1px solid rgba(255,255,255,0.90);
-      box-shadow: 0 1px 32px rgba(80,120,220,0.12), 0 2px 0 rgba(255,255,255,0.90) inset;
-      transition: background 0.4s, border-color 0.4s;
+      background:
+        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='90' height='90'><g fill='none' stroke='%23d4af37' stroke-opacity='0.10' stroke-width='0.7'><path d='M45 6 C58 18 58 28 45 45 C32 28 32 18 45 6 Z'/><path d='M45 84 C58 72 58 62 45 45 C32 62 32 72 45 84 Z'/></g></svg>"),
+        linear-gradient(180deg, rgba(20,4,4,0.92), rgba(28,6,6,0.88));
+      background-size: 90px 90px, 100% 100%;
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(245,217,122,0.45);
+      box-shadow: 0 4px 18px rgba(0,0,0,0.55), inset 0 -1px 0 rgba(245,217,122,0.18);
     }
     .nav-logo {
-      font-size: 1.3rem; font-weight: 800; color: var(--text);
-      letter-spacing: -0.5px;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem; font-weight: 700; letter-spacing: 1px;
+      color: #ffe9a8;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.6), 0 0 12px rgba(245,217,122,0.25);
     }
-    .nav-logo span { opacity: 0.35; }
+    .nav-logo span { color: #d4af37; opacity: 1; }
     .nav-right { display: flex; align-items: center; gap: 1.5rem; }
-    .nav-links { display: flex; gap: 1.6rem; list-style: none; }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
     .nav-links a {
-      font-size: 0.8rem; font-weight: 500; color: var(--text-secondary);
-      transition: color 0.2s; position: relative; padding-bottom: 2px;
+      font-family: 'Cinzel', serif;
+      font-size: 0.74rem; font-weight: 600; letter-spacing: 2px;
+      text-transform: uppercase; color: #fbeec3;
+      transition: color 0.22s; position: relative; padding-bottom: 4px;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.7);
     }
     .nav-links a::after {
       content: ''; position: absolute; bottom: 0; left: 0; right: 0;
-      height: 1.5px; background: var(--text); border-radius: 99px;
+      height: 1.5px;
+      background: linear-gradient(90deg, transparent, #d4af37, transparent);
       transform: scaleX(0); transition: transform 0.25s ease;
     }
-    .nav-links a:hover, .nav-links a.active { color: var(--text); }
+    .nav-links a:hover, .nav-links a.active { color: #ffe9a8; }
     .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
-
-    .theme-toggle {
-      width: 36px; height: 36px; border-radius: 50%;
-      background: var(--surface);
-      border: 1px solid var(--border-subtle);
-      color: var(--text);
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer; transition: all 0.25s;
-      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-    }
-    .theme-toggle:hover { background: var(--surface-strong); transform: scale(1.05); }
 
     .lang-toggle {
       display: flex; align-items: center;
-      background: var(--surface-strong);
-      border: 1px solid var(--border-subtle);
-      border-radius: 99px; padding: 0.22rem 0.45rem; gap: 0.2rem;
+      background: rgba(10,2,2,0.6);
+      border: 1px solid rgba(245,217,122,0.5);
+      border-radius: 2px; padding: 0.2rem 0.35rem; gap: 0.15rem;
     }
     .lang-btn {
-      font-size: 0.68rem; font-weight: 700; padding: 0.2rem 0.5rem;
-      border-radius: 99px; border: none; cursor: pointer; transition: all 0.2s;
-      background: transparent; color: var(--text-muted); font-family: 'Inter', sans-serif;
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem; font-weight: 700; padding: 0.22rem 0.55rem;
+      border-radius: 2px; border: none; cursor: pointer; transition: all 0.22s;
+      background: transparent; color: #fbeec3;
+      letter-spacing: 1.5px;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.7);
     }
-    .lang-btn.active { background: var(--accent); color: var(--accent-inv); }
+    .lang-btn:hover { color: #ffe9a8; }
+    .lang-btn.active {
+      background: linear-gradient(180deg, #d4af37, #a8801f);
+      color: #2a0808;
+      box-shadow: inset 0 1px 0 rgba(255,230,160,0.45);
+      text-shadow: none;
+    }
 
     .hamburger-btn {
-      display: none; background: none; border: none; cursor: pointer;
-      color: var(--text-secondary); padding: 4px;
+      display: none; background: rgba(10,2,2,0.6); border: 1px solid rgba(245,217,122,0.5);
+      border-radius: 2px; cursor: pointer;
+      color: #ffe9a8; padding: 6px 8px;
     }
 
     /* ── MOBILE MENU ── */
@@ -154,66 +160,200 @@
     .mobile-menu a:hover, .mobile-menu a.active { color: var(--text); }
 
     /* ── SECTION WRAPPER ── */
-    .sec-outer { position: relative; }
-    .sec-outer.sec-alt { background: rgba(0,0,0,0.18); }
-    .sec-wrap { max-width: 1100px; margin: 0 auto; padding: 6rem 2.5rem; }
+    /* MUSEUM THEME applied to all main sections after hero */
+    .sec-outer {
+      position: relative;
+      background:
+        radial-gradient(ellipse 60% 30% at 50% 18%, rgba(255,210,140,0.16), transparent 60%),
+        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='90' height='90' viewBox='0 0 90 90'><g fill='none' stroke='%23d4af37' stroke-opacity='0.14' stroke-width='0.9'><path d='M45 6 C58 18 58 28 45 45 C32 28 32 18 45 6 Z'/><path d='M45 84 C58 72 58 62 45 45 C32 62 32 72 45 84 Z'/><path d='M6 45 C18 32 28 32 45 45 C28 58 18 58 6 45 Z'/><path d='M84 45 C72 32 62 32 45 45 C62 58 72 58 84 45 Z'/><circle cx='45' cy='45' r='3.5'/></g></svg>"),
+        linear-gradient(180deg, #1f0606 0%, #2a0808 50%, #1f0606 100%);
+      background-size: auto, 90px 90px, 100% 100%;
+      box-shadow: inset 0 2px 30px rgba(0,0,0,0.55), inset 0 -2px 30px rgba(0,0,0,0.5);
+      overflow: hidden;
+    }
+    .sec-outer.sec-alt {
+      background:
+        radial-gradient(ellipse 60% 30% at 50% 18%, rgba(255,210,140,0.20), transparent 60%),
+        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='90' height='90' viewBox='0 0 90 90'><g fill='none' stroke='%23d4af37' stroke-opacity='0.16' stroke-width='0.9'><path d='M45 6 C58 18 58 28 45 45 C32 28 32 18 45 6 Z'/><path d='M45 84 C58 72 58 62 45 45 C32 62 32 72 45 84 Z'/><path d='M6 45 C18 32 28 32 45 45 C28 58 18 58 6 45 Z'/><path d='M84 45 C72 32 62 32 45 45 C62 58 72 58 84 45 Z'/><circle cx='45' cy='45' r='3.5'/></g></svg>"),
+        linear-gradient(180deg, #2a0808 0%, #3a0a0a 50%, #2a0808 100%);
+      background-size: auto, 90px 90px, 100% 100%;
+    }
+    .sec-wrap { max-width: 1100px; margin: 0 auto; padding: 6rem 2.5rem; position: relative; z-index: 2; }
 
     .sec-badge {
       display: inline-flex; align-items: center; gap: 0.5rem;
-      font-size: 0.65rem; font-weight: 700; letter-spacing: 2px;
-      text-transform: uppercase; color: var(--text-muted);
-      background: var(--surface); border: 1px solid var(--border-subtle);
-      padding: 0.3rem 0.9rem; border-radius: 99px;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 3px;
+      text-transform: uppercase; color: #ffe9a8;
+      background: rgba(10,2,2,0.78); border: 1px solid rgba(245,217,122,0.7);
+      padding: 0.45rem 1.1rem; border-radius: 2px;
       margin-bottom: 1.2rem;
-      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      font-family: 'Cinzel', serif;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.5);
     }
     .sec-badge::before {
-      content: ''; width: 5px; height: 5px; border-radius: 50%;
-      background: var(--text-muted); opacity: 0.5;
+      content: ''; width: 6px; height: 6px; border-radius: 50%;
+      background: #f5d97a; box-shadow: 0 0 10px #f5d97a; opacity: 1;
     }
     .sec-title {
-      font-size: clamp(1.6rem, 3vw, 2.1rem); font-weight: 800;
-      color: var(--text); letter-spacing: -0.8px; margin-bottom: 0.5rem;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3.6vw, 2.8rem); font-weight: 700;
+      color: #ffe9a8; letter-spacing: 0.5px; margin-bottom: 0.5rem;
       line-height: 1.1;
+      text-shadow: 0 2px 0 rgba(0,0,0,0.55), 0 4px 18px rgba(0,0,0,0.85), 0 0 30px rgba(245,217,122,0.25);
     }
     .sec-sub {
-      font-size: 0.78rem; color: var(--text-muted); font-weight: 500;
-      letter-spacing: 1px; text-transform: uppercase; margin-bottom: 2.5rem;
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem; color: #ffd87a; font-weight: 600;
+      letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 2.5rem;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.85);
     }
 
-    /* ── HERO ── */
+    /* ── HERO (MUSEUM ROOM) ── */
     .hero {
+      position: relative;
       min-height: 100vh; display: flex; align-items: center;
-      padding: 8rem 2.5rem 5rem;
+      padding: 8rem 2.5rem 9rem;
+      background:
+        radial-gradient(ellipse 60% 35% at 50% 8%, rgba(255,210,140,0.22), transparent 60%),
+        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='90' height='90' viewBox='0 0 90 90'><g fill='none' stroke='%23d4af37' stroke-opacity='0.16' stroke-width='0.9'><path d='M45 6 C58 18 58 28 45 45 C32 28 32 18 45 6 Z'/><path d='M45 84 C58 72 58 62 45 45 C32 62 32 72 45 84 Z'/><path d='M6 45 C18 32 28 32 45 45 C28 58 18 58 6 45 Z'/><path d='M84 45 C72 32 62 32 45 45 C62 58 72 58 84 45 Z'/><circle cx='45' cy='45' r='3.5'/><circle cx='45' cy='45' r='8' stroke-opacity='0.10'/><path d='M45 22 L48 30 L45 38 L42 30 Z' fill='%23d4af37' fill-opacity='0.10'/><path d='M45 68 L48 60 L45 52 L42 60 Z' fill='%23d4af37' fill-opacity='0.10'/><path d='M22 45 L30 48 L38 45 L30 42 Z' fill='%23d4af37' fill-opacity='0.10'/><path d='M68 45 L60 48 L52 45 L60 42 Z' fill='%23d4af37' fill-opacity='0.10'/></g></svg>"),
+        linear-gradient(180deg, #2a0808 0%, #3d0a0a 35%, #4a0d0d 70%, #3a0808 100%);
+      background-size: auto, 90px 90px, 100% 100%;
+      box-shadow: inset 0 -2px 30px rgba(0,0,0,0.6), inset 0 2px 30px rgba(0,0,0,0.4);
+      overflow: hidden;
     }
+    /* vignette dim corners like a museum */
+    .hero::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 1;
+      background: radial-gradient(ellipse 90% 70% at 50% 45%, transparent 40%, rgba(0,0,0,0.55) 100%);
+    }
+    /* Wall sconce / lamp above photo */
+    .museum-lamp {
+      position: absolute; top: 4rem; right: 14%;
+      width: 80px; height: 110px;
+      pointer-events: none; z-index: 3;
+    }
+    .museum-lamp .lamp-arm {
+      position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 6px; height: 32px;
+      background: linear-gradient(180deg, #8a6a1a, #4a3608);
+      border-radius: 0 0 3px 3px;
+      box-shadow: 1px 0 0 rgba(0,0,0,0.4);
+    }
+    .museum-lamp .lamp-shade {
+      position: absolute; top: 28px; left: 50%; transform: translateX(-50%);
+      width: 60px; height: 40px;
+      background: linear-gradient(180deg, #c9a548 0%, #8a6a1a 60%, #5a4408 100%);
+      clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
+      box-shadow: inset 0 -8px 12px rgba(0,0,0,0.5), inset 0 2px 4px rgba(255,220,140,0.6);
+    }
+    .museum-lamp .lamp-bulb {
+      position: absolute; top: 60px; left: 50%; transform: translateX(-50%);
+      width: 14px; height: 14px; border-radius: 50%;
+      background: radial-gradient(circle, #fff7d6 0%, #ffd87a 50%, #b8860b 100%);
+      box-shadow: 0 0 18px 6px rgba(255,220,140,0.9), 0 0 50px 18px rgba(255,200,100,0.45);
+      animation: lampFlicker 4s ease-in-out infinite;
+    }
+    .museum-lamp .lamp-glow {
+      position: absolute; top: 40px; left: 50%; transform: translateX(-50%);
+      width: 280px; height: 280px;
+      background: radial-gradient(ellipse 50% 60% at 50% 30%, rgba(255,220,140,0.45), rgba(255,200,100,0.18) 35%, transparent 65%);
+      pointer-events: none;
+    }
+    @keyframes lampFlicker {
+      0%, 100% { box-shadow: 0 0 18px 6px rgba(255,220,140,0.9), 0 0 50px 18px rgba(255,200,100,0.45); }
+      50%      { box-shadow: 0 0 22px 8px rgba(255,230,160,1.0), 0 0 60px 22px rgba(255,210,120,0.55); }
+    }
+    /* Wood wall panel at bottom */
+    .museum-panel {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 120px;
+      background:
+        repeating-linear-gradient(90deg,
+          #2c1608 0px, #3a1d0c 80px, #2c1608 160px),
+        linear-gradient(180deg, #1a0c04 0%, #3a1d0c 25%, #4a2810 60%, #2a1408 100%);
+      border-top: 3px solid #6b4818;
+      box-shadow: inset 0 8px 20px rgba(0,0,0,0.7), 0 -8px 20px rgba(0,0,0,0.5);
+      z-index: 2;
+    }
+    .museum-panel::before {
+      content: ''; position: absolute; top: 12px; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, #c9a548 20%, #c9a548 80%, transparent);
+      opacity: 0.55;
+    }
+    .museum-panel::after {
+      content: ''; position: absolute; top: 22px; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, #8a6a1a 30%, #8a6a1a 70%, transparent);
+      opacity: 0.4;
+    }
+
     .hero-inner {
+      position: relative; z-index: 2;
       max-width: 1100px; margin: 0 auto; width: 100%;
       display: flex; align-items: center; gap: 5rem;
     }
     .hero-text { flex: 1; }
     .hero-tag {
       display: inline-flex; align-items: center; gap: 0.5rem;
-      font-size: 0.68rem; font-weight: 700;
-      letter-spacing: 2px; color: var(--text-secondary); text-transform: uppercase;
-      background: var(--surface); border: 1px solid var(--border-subtle);
-      padding: 0.4rem 1rem; border-radius: 99px; margin-bottom: 1.6rem;
-      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      font-size: 0.78rem; font-weight: 700;
+      letter-spacing: 3px; color: #ffe9a8; text-transform: uppercase;
+      background: rgba(10,2,2,0.78); border: 1px solid rgba(245,217,122,0.7);
+      padding: 0.5rem 1.2rem; border-radius: 2px; margin-bottom: 1.8rem;
+      font-family: 'Cinzel', serif;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.55), inset 0 0 12px rgba(245,217,122,0.12);
+      text-shadow: 0 1px 2px rgba(0,0,0,0.8);
     }
-    .hero-tag::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #34d399; }
+    .hero-tag::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: #f5d97a; box-shadow: 0 0 10px #f5d97a; }
     .hero-name {
-      font-size: clamp(2.6rem, 5vw, 4.2rem); font-weight: 900;
-      line-height: 1.04; color: var(--text); margin-bottom: 0.8rem;
-      letter-spacing: -1.5px;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 5.2vw, 4.6rem); font-weight: 700;
+      line-height: 1.05; margin-bottom: 1rem;
+      letter-spacing: 0.5px;
+      color: #ffe9a8;
+      text-shadow:
+        0 2px 0 rgba(0,0,0,0.55),
+        0 4px 18px rgba(0,0,0,0.85),
+        0 0 30px rgba(245,217,122,0.25);
     }
     .hero-role {
-      font-size: 0.9rem; color: var(--text-secondary); font-weight: 400;
-      margin-bottom: 1.5rem;
+      font-family: 'Cinzel', serif;
+      font-size: 0.95rem; color: #ffd87a; font-weight: 600;
+      letter-spacing: 2.5px; text-transform: uppercase;
+      margin-bottom: 1.6rem;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.85);
     }
     .hero-bio {
-      font-size: 0.88rem; line-height: 1.95; color: var(--text-secondary);
-      max-width: 480px; margin-bottom: 2rem; font-weight: 300;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem; line-height: 1.9; color: #fbeec3;
+      max-width: 480px; margin-bottom: 2rem; font-weight: 500;
+      font-style: italic;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.8);
     }
     .hero-cta { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+    .hero .btn {
+      font-family: 'Cinzel', serif;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      font-size: 0.72rem; font-weight: 600;
+      border-radius: 2px;
+    }
+    .hero .btn-dark {
+      background: linear-gradient(180deg, #d4af37 0%, #a8801f 100%);
+      color: #2a0808;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,230,160,0.4);
+      border: 1px solid #8a6a1a;
+    }
+    .hero .btn-dark:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,230,160,0.5); }
+    .hero .btn-outline {
+      background: rgba(20,5,5,0.45); color: #e8c876;
+      border: 1px solid rgba(212,175,55,0.55);
+      backdrop-filter: blur(8px);
+    }
+    .hero .btn-outline:hover { background: rgba(212,175,55,0.18); transform: translateY(-2px); }
+    .hero .soc-btn {
+      background: rgba(20,5,5,0.55); border: 1px solid rgba(212,175,55,0.45);
+      color: #e8c876;
+    }
+    .hero .soc-btn:hover { background: linear-gradient(180deg, #d4af37, #a8801f); color: #2a0808; transform: translateY(-2px); }
     .btn {
       display: inline-flex; align-items: center; gap: 0.45rem;
       padding: 0.72rem 1.8rem; border-radius: 99px;
@@ -244,15 +384,48 @@
     .soc-btn:hover { background: var(--accent); color: var(--accent-inv); transform: translateY(-2px); }
 
     .hero-photo {
-      flex-shrink: 0; width: 290px; height: 345px; border-radius: 2rem; overflow: hidden;
-      background: var(--surface); backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      border: 1px solid var(--border);
-      box-shadow: 0 24px 80px rgba(0,0,0,0.2), 0 0 0 1px var(--border);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      flex-shrink: 0; width: 300px; height: 380px;
+      background: transparent;
+      transition: transform 0.35s ease, filter 0.35s ease;
+      filter:
+        drop-shadow(0 28px 36px rgba(0,0,0,0.75))
+        drop-shadow(0 10px 16px rgba(0,0,0,0.55));
     }
-    .hero-photo:hover { transform: translateY(-6px); box-shadow: 0 40px 100px rgba(0,0,0,0.25); }
-    .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+    .hero-photo::after {
+      content: ''; position: absolute; left: 50%; bottom: -22px;
+      transform: translateX(-50%);
+      width: 78%; height: 22px;
+      background: radial-gradient(ellipse, rgba(0,0,0,0.7), transparent 70%);
+      filter: blur(8px); pointer-events: none;
+    }
+    .hero-photo:hover {
+      transform: translateY(-8px);
+      filter:
+        drop-shadow(0 40px 50px rgba(0,0,0,0.85))
+        drop-shadow(0 14px 22px rgba(0,0,0,0.65));
+    }
+    .hero-photo .photo-inner {
+      position: relative;
+      width: 100%; height: 100%;
+      background: transparent;
+    }
+    .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; background: transparent; }
+    /* Plaque caption under photo */
+    .museum-plaque {
+      position: absolute; left: 50%; bottom: -56px;
+      transform: translateX(-50%);
+      padding: 6px 18px;
+      background: linear-gradient(180deg, #d4af37 0%, #a8801f 100%);
+      color: #2a0808;
+      font-family: 'Cinzel', serif;
+      font-size: 0.62rem; letter-spacing: 3px; text-transform: uppercase;
+      font-weight: 700;
+      border-radius: 2px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,230,160,0.5);
+      white-space: nowrap;
+      z-index: 3;
+    }
 
     /* ── ABOUT ── */
     .about-glass {
@@ -264,6 +437,132 @@
       font-weight: 300;
     }
     .about-text em { color: var(--text); font-style: normal; font-weight: 600; }
+
+    /* ── MUSEUM CARDS / GLASS / TABS (applies to all sec-outer) ── */
+    .about-glass {
+      background: rgba(15,3,3,0.55) !important;
+      border: 1px solid rgba(245,217,122,0.35) !important;
+      box-shadow: 0 14px 40px rgba(0,0,0,0.6), inset 0 0 30px rgba(245,217,122,0.05) !important;
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    }
+    .sec-outer .about-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem; line-height: 1.95;
+      color: #fbeec3; font-weight: 500;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.7);
+    }
+    .sec-outer .about-text em {
+      color: #ffd87a; font-style: italic; font-weight: 700;
+      text-shadow: 0 0 12px rgba(245,217,122,0.45);
+    }
+    /* Tabs (Works section filter) */
+    .sec-outer .tab {
+      background: rgba(10,2,2,0.55); border: 1px solid rgba(245,217,122,0.4);
+      color: #fbeec3; font-family: 'Cinzel', serif;
+      letter-spacing: 1.8px; text-transform: uppercase;
+      font-size: 0.72rem; font-weight: 600;
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      border-radius: 2px; padding: 0.55rem 1.4rem;
+    }
+    .sec-outer .tab:hover { color: #ffe9a8; border-color: #d4af37; background: rgba(20,5,5,0.7); }
+    .sec-outer .tab.on {
+      background: linear-gradient(180deg, #d4af37 0%, #a8801f 100%);
+      color: #2a0808; border-color: #8a6a1a;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,230,160,0.4);
+    }
+    /* Cards (gallery items as framed artworks) */
+    .sec-outer .card {
+      background: rgba(15,3,3,0.55);
+      border: 1px solid rgba(245,217,122,0.35);
+      box-shadow: 0 14px 30px rgba(0,0,0,0.55), inset 0 0 0 1px rgba(245,217,122,0.08);
+      border-radius: 4px;
+      backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+    }
+    .sec-outer .card:hover {
+      transform: translateY(-7px) scale(1.015);
+      box-shadow: 0 22px 50px rgba(0,0,0,0.75), 0 0 0 1px rgba(245,217,122,0.55);
+    }
+    .sec-outer .card-img-sq { background: rgba(15,3,3,0.7); }
+    .sec-outer .card-cat {
+      color: #ffd87a; font-family: 'Cinzel', serif;
+      letter-spacing: 2px; font-weight: 700;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.7);
+    }
+    .sec-outer .card-name {
+      color: #ffe9a8; font-family: 'Playfair Display', serif;
+      font-weight: 600; font-size: 0.92rem;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.7);
+    }
+    /* Experience items (museum plaque style) */
+    .sec-outer .exp-item {
+      background: rgba(15,3,3,0.55);
+      border: 1px solid rgba(245,217,122,0.35);
+      box-shadow: 0 14px 30px rgba(0,0,0,0.55), inset 0 0 0 1px rgba(245,217,122,0.08);
+      border-radius: 4px;
+      backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+    }
+    .sec-outer .exp-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 22px 50px rgba(0,0,0,0.75), 0 0 0 1px rgba(245,217,122,0.55);
+    }
+    .sec-outer .exp-date {
+      color: #ffd87a; font-family: 'Cinzel', serif;
+      letter-spacing: 1.5px; font-weight: 600;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.7);
+    }
+    .sec-outer .exp-role {
+      color: #ffe9a8; font-family: 'Playfair Display', serif;
+      font-weight: 700; font-size: 1.05rem;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.7);
+    }
+    .sec-outer .exp-company {
+      color: #ffd87a; font-family: 'Cinzel', serif;
+      letter-spacing: 1.5px; font-weight: 500;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.7);
+    }
+    .sec-outer .exp-desc {
+      color: #fbeec3; font-family: 'Playfair Display', serif;
+      font-size: 0.92rem; line-height: 1.85;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+    }
+    /* Slider arrows + dots */
+    .sec-outer .vslider-arrow {
+      background: rgba(10,2,2,0.7); border: 1px solid rgba(245,217,122,0.5);
+      color: #ffe9a8;
+    }
+    .sec-outer .vslider-arrow:hover:not(:disabled) {
+      background: linear-gradient(180deg, #d4af37, #a8801f);
+      color: #2a0808;
+    }
+    .sec-outer .vslide-dot { background: rgba(245,217,122,0.35); }
+    .sec-outer .vslide-dot.on { background: #d4af37; }
+
+    /* Contact section — generic text + inputs / links */
+    .sec-outer a, .sec-outer p, .sec-outer label, .sec-outer span {
+      color: inherit;
+    }
+    #kontak .sec-wrap > * { color: #fbeec3; }
+    #kontak input, #kontak textarea, #kontak select {
+      background: rgba(10,2,2,0.55) !important;
+      border: 1px solid rgba(245,217,122,0.4) !important;
+      color: #ffe9a8 !important;
+      font-family: 'Playfair Display', serif !important;
+    }
+    #kontak input::placeholder, #kontak textarea::placeholder { color: rgba(251,238,195,0.4) !important; }
+    #kontak input:focus, #kontak textarea:focus { border-color: #d4af37 !important; outline: none; box-shadow: 0 0 0 2px rgba(212,175,55,0.25) !important; }
+    #kontak .btn, #kontak button {
+      font-family: 'Cinzel', serif;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      background: linear-gradient(180deg, #d4af37 0%, #a8801f 100%);
+      color: #2a0808; border: 1px solid #8a6a1a; border-radius: 2px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,230,160,0.4);
+    }
+    #kontak .btn:hover, #kontak button:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,230,160,0.5); }
+    #kontak .soc-btn {
+      background: rgba(10,2,2,0.6); border: 1px solid rgba(245,217,122,0.5);
+      color: #ffe9a8;
+    }
+    #kontak .soc-btn:hover { background: linear-gradient(180deg, #d4af37, #a8801f); color: #2a0808; }
 
     /* ── TABS ── */
     .tabs { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
@@ -502,37 +801,87 @@
     .zoomable:hover { transform: scale(1.03); box-shadow: 0 8px 32px rgba(0,0,0,0.25); }
     .card .zoomable { transform: none; box-shadow: none; }
 
-    /* ── CONTACT ── */
+    /* ── CONTACT (MUSEUM) ── */
     .contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
-    .cinfo-title { font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 0.7rem; }
-    .cinfo-desc { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.9; margin-bottom: 2rem; }
+    .contact-intro {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.02rem; line-height: 1.95;
+      color: #fbeec3; max-width: 380px; font-weight: 500;
+      font-style: italic;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.7);
+    }
+    #kontak .glass-strong {
+      background: rgba(15,3,3,0.55) !important;
+      border: 1px solid rgba(245,217,122,0.4) !important;
+      box-shadow: 0 16px 44px rgba(0,0,0,0.65), inset 0 0 30px rgba(245,217,122,0.06) !important;
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    }
+    .cinfo-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem; font-weight: 700; color: #ffe9a8;
+      letter-spacing: 0.5px; margin-bottom: 0.7rem;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.7), 0 0 18px rgba(245,217,122,0.25);
+    }
+    .cinfo-desc {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem; color: #fbeec3; line-height: 1.9;
+      margin-bottom: 2rem; font-style: italic;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+    }
     .citem {
       display: flex; align-items: center; gap: 0.9rem; margin-bottom: 1rem;
-      padding: 0.85rem 1rem; border-radius: 0.85rem;
-      border: 1px solid var(--border-subtle);
-      background: var(--surface);
-      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-      transition: all 0.22s; text-decoration: none; color: var(--text);
+      padding: 0.9rem 1.1rem; border-radius: 2px;
+      border: 1px solid rgba(245,217,122,0.35);
+      background: rgba(10,2,2,0.55);
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      transition: all 0.22s; text-decoration: none; color: #fbeec3;
     }
-    .citem:hover { transform: translateX(4px); box-shadow: var(--glass-shadow); }
+    .citem:hover {
+      transform: translateX(4px);
+      border-color: rgba(245,217,122,0.7);
+      background: rgba(20,5,5,0.7);
+      box-shadow: 0 8px 22px rgba(0,0,0,0.55);
+    }
     .cicon {
-      width: 42px; height: 42px; background: var(--bg);
-      border: 1px solid var(--border-subtle); border-radius: 50%;
+      width: 42px; height: 42px;
+      background: rgba(10,2,2,0.7);
+      border: 1px solid rgba(245,217,122,0.5);
+      border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      color: var(--text-secondary); flex-shrink: 0;
+      color: #ffe9a8; flex-shrink: 0;
     }
-    .clabel { font-size: 0.62rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; margin-bottom: 0.05rem; }
-    .cval { font-size: 0.86rem; color: var(--text); font-weight: 500; }
+    .clabel {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem; color: #ffd87a; text-transform: uppercase;
+      letter-spacing: 2px; font-weight: 700; margin-bottom: 0.15rem;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.7);
+    }
+    .cval {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem; color: #ffe9a8; font-weight: 600;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.7);
+    }
 
-    /* ── FOOTER ── */
+    /* ── FOOTER (MUSEUM) ── */
     footer {
-      background: var(--surface);
-      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-      border-top: 1px solid var(--border-subtle);
-      text-align: center; padding: 2.5rem 2.5rem;
+      background:
+        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='90' height='90'><g fill='none' stroke='%23d4af37' stroke-opacity='0.10' stroke-width='0.7'><path d='M45 6 C58 18 58 28 45 45 C32 28 32 18 45 6 Z'/><path d='M45 84 C58 72 58 62 45 45 C32 62 32 72 45 84 Z'/></g></svg>"),
+        linear-gradient(180deg, #1a0404 0%, #0a0202 100%);
+      background-size: 90px 90px, 100% 100%;
+      border-top: 1px solid rgba(245,217,122,0.45);
+      box-shadow: inset 0 1px 0 rgba(245,217,122,0.18);
+      text-align: center; padding: 2.2rem 2.5rem;
     }
-    footer p { font-size: 0.76rem; color: var(--text-muted); }
-    footer span { color: var(--text-secondary); }
+    footer p {
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem; color: #fbeec3;
+      letter-spacing: 2px;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.7);
+    }
+    footer span {
+      color: #ffd87a; font-weight: 700;
+      text-shadow: 0 0 10px rgba(245,217,122,0.4);
+    }
 
     /* ── EXPERIENCE IMAGE GRID ── */
     .exp-media-grid { margin-top: 1rem; display: flex; flex-direction: column; gap: 0.6rem; }
@@ -611,7 +960,7 @@
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo">Zaky<span>.</span></div>
+  <div class="nav-logo">Zaky</span></div>
   <div class="nav-right">
     <ul class="nav-links" id="navLinks">
       <li><a href="#beranda" class="nav-link" data-en="Home" data-id="Beranda">Home</a></li>
@@ -624,10 +973,6 @@
       <button class="lang-btn active" id="btnEN" onclick="setLang('en')">EN</button>
       <button class="lang-btn" id="btnID" onclick="setLang('id')">ID</button>
     </div>
-    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
-      <svg id="themeIconSun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-      <svg id="themeIconMoon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-    </button>
     <button class="hamburger-btn" id="hamburgerBtn" onclick="toggleMenu()" aria-label="Menu">
       <svg id="menuIcon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
         <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
@@ -647,6 +992,12 @@
 
 <!-- HERO -->
 <section id="beranda" class="hero">
+  <div class="museum-lamp">
+    <div class="lamp-glow"></div>
+    <div class="lamp-arm"></div>
+    <div class="lamp-shade"></div>
+    <div class="lamp-bulb"></div>
+  </div>
   <div class="hero-inner">
     <div class="hero-text fade-in">
       <span class="hero-tag">Visual Alchemist &bull; 3D Artist &bull; Animator</span>
@@ -678,11 +1029,15 @@
       </div>
     </div>
     <div class="hero-photo fade-in" style="animation-delay:0.15s">
-      <img src="https://github.com/datazaki25-web/my-portfolio/blob/main/assets/images/foto-zaky-full.png?raw=true"
-           alt="M Zaky Mahid Ruwansyah"
-           onerror="this.src='https://ui-avatars.com/api/?name=MZ&size=330&background=eee&color=111&bold=true&length=2'" />
+      <div class="photo-inner">
+        <img src="https://raw.githubusercontent.com/datazaki25-web/portofolio-fixs/main/ASSET/page%201/foto%20Profil.png"
+             alt="M Zaky Mahid Ruwansyah"
+             onerror="this.src='https://ui-avatars.com/api/?name=MZ&size=330&background=2a0808&color=d4af37&bold=true&length=2'" />
+      </div>
+      <div class="museum-plaque">M. Zaky Mahid R.</div>
     </div>
   </div>
+  <div class="museum-panel"></div>
 </section>
 
 <!-- ABOUT -->
@@ -695,9 +1050,9 @@
     </div>
     <div class="about-glass glass fade-in" style="animation-delay:0.1s; border-radius:1.5rem; padding:2.5rem;">
       <p class="about-text"
-         data-en='"A visual creator focused on graphic design, 2D animation, illustration, video editing, and <em>3D Art since 2016</em>. I have a profound interest in visual arts and technology, combining creativity with technical skills to produce communicative and visually engaging works."'
+         data-en='"A visual creator focused on graphic design, 2D animation, illustration, video editing, and 3D Art since <em>2016</em>. I have a profound interest in visual arts and technology, combining creativity with technical skills to produce communicative and visually engaging works."'
          data-id='"Seorang yang fokus bidang kreator visual yang sejak <em>2016</em> aktif belajar di bidang desain grafis, animasi 2D, ilustrasi, editing video, dan 3D Artist. Saya memiliki ketertarikan mendalam terhadap seni visual dan teknologi, serta terbiasa menggabungkan kreativitas dengan keterampilan teknis untuk menghasilkan karya yang komunikatif dan menarik secara visual."'>
-        "A visual creator focused on graphic design, 2D animation, illustration, video editing, and <em>3D Art since 2016</em>. I have a profound interest in visual arts and technology, combining creativity with technical skills to produce communicative and visually engaging works."
+        "A visual creator focused on graphic design, 2D animation, illustration, video editing, and 3D Art since <em>2016</em>. I have a profound interest in visual arts and technology, combining creativity with technical skills to produce communicative and visually engaging works."
       </p>
     </div>
   </div>
@@ -907,7 +1262,7 @@
         <div class="sec-badge" data-en="Let's Collaborate" data-id="Mari Berkolaborasi">Let's Collaborate</div>
         <div class="sec-title" data-en="Contact" data-id="Kontak">Contact</div>
         <div class="sec-sub" data-en="Get in Touch" data-id="Hubungi Saya">Get in Touch</div>
-        <p style="font-size:0.88rem;color:var(--text-secondary);line-height:1.9;max-width:360px;"
+        <p class="contact-intro"
            data-en="Open to collaboration opportunities, freelance projects, or simply discussing the world of visual arts and design. Don't hesitate to reach out!"
            data-id="Terbuka untuk peluang kerja sama, proyek freelance, atau sekadar berdiskusi mengenai dunia visual dan desain. Jangan ragu untuk menghubungi!">
           Open to collaboration opportunities, freelance projects, or simply discussing the world of visual arts and design. Don't hesitate to reach out!
