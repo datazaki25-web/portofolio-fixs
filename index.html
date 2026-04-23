@@ -1799,19 +1799,19 @@
         pointer-events: none;
       }
       .book-label {
-        font-size: 0.62rem;
+        font-size: 0.7rem;
         font-weight: 700;
-        letter-spacing: 0.16em;
+        letter-spacing: 0.18em;
         text-transform: uppercase;
-        border: 1px solid rgba(255, 255, 255, 0.85);
-        padding: 0.4rem 0.95rem;
-        background: rgba(0, 0, 0, 0.55);
-        color: #ffffff;
+        border: 1px solid #ffffff;
+        padding: 0.45rem 1.05rem;
+        background: rgba(0, 0, 0, 0.45);
+        color: #ffffff !important;
         border-radius: 3px;
         transform: translateY(8px);
         transition: transform 0.3s ease;
         font-family: "Cinzel", serif;
-        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.85);
+        text-shadow: 0 1px 4px rgba(0, 0, 0, 0.95), 0 0 10px rgba(0, 0, 0, 0.6);
         backdrop-filter: blur(4px);
         -webkit-backdrop-filter: blur(4px);
       }
@@ -2017,12 +2017,12 @@
           font-size: 0.95rem;
         }
         .grid-3 {
-          grid-template-columns: repeat(2, 1fr);
-          gap: 0.7rem;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 0.55rem;
         }
         .grid-2 {
-          grid-template-columns: 1fr;
-          gap: 0.7rem;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 0.6rem;
         }
         .exp-img-row.cols-3 {
           grid-template-columns: repeat(2, 1fr);
@@ -2033,8 +2033,16 @@
           gap: 2rem;
         }
         .exp-img-row.cols-2-1-1 {
-          grid-template-columns: 1fr;
-          gap: 0.6rem;
+          grid-template-columns: 1fr 1fr;
+          gap: 0.5rem;
+        }
+        .exp-img-row.cols-2-1-1 > [style*="grid-column: 1"] {
+          grid-column: 1 / -1 !important;
+        }
+        .book-link.ratio-book {
+          max-width: 220px;
+          margin-left: auto;
+          margin-right: auto;
         }
         .vslider-arrow {
           width: 36px;
@@ -2125,11 +2133,18 @@
           font-size: clamp(1.5rem, 7vw, 2rem);
         }
         .grid-3 {
-          grid-template-columns: repeat(2, 1fr);
-          gap: 0.55rem;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 0.4rem;
         }
         .grid-2 {
-          grid-template-columns: 1fr;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 0.5rem;
+        }
+        .book-link.ratio-book {
+          max-width: 170px;
+        }
+        .exp-img-row.cols-2-1-1 {
+          gap: 0.4rem;
         }
         .card-info {
           padding: 0.6rem 0.75rem;
@@ -2228,10 +2243,14 @@
       /* ── EXTRA-SMALL ── */
       @media (max-width: 360px) {
         .grid-3 {
-          grid-template-columns: 1fr;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 0.35rem;
         }
         .hero-photo {
           width: clamp(140px, 60vw, 180px);
+        }
+        .book-link.ratio-book {
+          max-width: 140px;
         }
       }
     </style>
